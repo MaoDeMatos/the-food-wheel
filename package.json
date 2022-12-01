@@ -1,5 +1,5 @@
 {
-  "name": "hi-next13",
+  "name": "the-food-wheel",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,6 +19,7 @@
     "@types/react-dom": "^18.0.9",
     "autoprefixer": "^10.4.13",
     "concurrently": "^7.6.0",
+    "daisyui": "^2.42.1",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
     "postcss": "^8.4.19",
