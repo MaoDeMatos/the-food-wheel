@@ -13,7 +13,18 @@ type IDataStore = {
 export const dataStore = proxy<IDataStore>({
   initialSpeed: 2,
   slowdownSpeed: 8,
-  options: [''],
+  // options: [''],
+  options: [
+    'Option A',
+    'Option B',
+    'Option C',
+    'Option D',
+    'Option E',
+    // 'Option F',
+    // 'Option G',
+    // 'Option H',
+    // 'Option I',
+  ],
 });
 
 export const useDataStoreAsync = () => useSnapshot(dataStore);

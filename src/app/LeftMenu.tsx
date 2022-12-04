@@ -2,7 +2,7 @@
 
 import { Plus, X } from 'react-feather';
 import { CustomSliderComponent } from '../components/Sliders';
-import { INITIAL_SPEED, SLOWDOWN_SPEED } from '../constants';
+import { INITIAL_SPEED, OPTIONS, SLOWDOWN_SPEED } from '../constants';
 import {
   optionsActions,
   setInitialSpeed,
@@ -79,7 +79,7 @@ function LeftMenuOptions() {
         </div>
       ))}
 
-      {options.length <= 16 && (
+      {options.length < OPTIONS.MAX && (
         <button
           className="btn-primary btn w-full gap-2"
           type="button"
