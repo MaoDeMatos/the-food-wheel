@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "dev": "concurrently \"next dev --turbo\" \"tailwindcss --input app/globals.css --output build/styles.css --watch\"",
+    "build": "tailwindcss -m --input app/globals.css --output build/styles.css && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write app"
+  }
+}

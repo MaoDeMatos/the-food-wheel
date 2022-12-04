@@ -1,4 +1,5 @@
-import "../build/styles.css";
+// import '../build/styles.css'; // Used when Turbopack is enabled
+import './globals.css'; // Used when Turbopack is disabled
 
 export default function RootLayout({
   children,
