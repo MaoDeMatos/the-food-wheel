@@ -10,6 +10,8 @@ You only need to enter the different options you consider, and the wheel will do
 
 🍽️ Enjoy your meal !
 
+The idea comes from [La roue de la bouffe](http://www.larouedelabouffe.fr/), which does the exact same thing !
+
 ---
 
 ## Requirements
@@ -29,3 +31,11 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+---
+
+## TODO
+
+- [ ] Replace the wheel with a custom image (Maybe add an option to personalize each section ?)
+- [ ] Translate (FR/EN)
+- [ ] Add options as URL parameters in order to save them
