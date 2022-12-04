@@ -55,7 +55,8 @@ export function CustomSliderComponent({
         <p>{label}</p>
         <input
           type="number"
-          className="input-ghost input input-xs text-right font-bold text-secondary"
+          dir="rtl"
+          className="input-ghost input input-xs text-sm font-bold text-primary"
           value={value}
           onChange={valueChangeHandler}
           min={min}
@@ -68,7 +69,7 @@ export function CustomSliderComponent({
         min={min}
         max={max}
         value={value}
-        className="range range-secondary range-xs"
+        className="range range-primary range-xs"
         onChange={valueChangeHandler}
         step={step}
       />

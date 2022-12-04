@@ -2,6 +2,7 @@
 
 import { Plus, X } from 'react-feather';
 import { CustomSliderComponent } from '../components/Sliders';
+import { INITIAL_SPEED, SLOWDOWN_SPEED } from '../constants';
 import {
   optionsActions,
   setInitialSpeed,
@@ -11,7 +12,7 @@ import {
 
 export function LeftMenu() {
   return (
-    <div className="card card-compact w-full bg-base-300 sm:w-56">
+    <div className="card card-compact w-full bg-neutral text-neutral-content shadow-md sm:w-56">
       <div className="card-body gap-6">
         <LeftMenuConfig />
         <LeftMenuOptions />
@@ -33,8 +34,8 @@ function LeftMenuConfig() {
         handleValueChanges={(newVal: number) => {
           setInitialSpeed(newVal);
         }}
-        min={1}
-        max={9}
+        min={INITIAL_SPEED.MIN}
+        max={INITIAL_SPEED.MAX}
         withCarets
       />
       <CustomSliderComponent
@@ -43,8 +44,8 @@ function LeftMenuConfig() {
         handleValueChanges={(newVal: number) => {
           setSlowdownSpeed(newVal);
         }}
-        min={1}
-        max={20}
+        min={SLOWDOWN_SPEED.MIN}
+        max={SLOWDOWN_SPEED.MAX}
       />
     </div>
   );
@@ -80,7 +81,7 @@ function LeftMenuOptions() {
 
       {options.length <= 16 && (
         <button
-          className="btn w-full gap-2"
+          className="btn-primary btn w-full gap-2"
           type="button"
           onClick={() => optionsActions.addOption()}
         >
