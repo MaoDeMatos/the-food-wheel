@@ -13,25 +13,25 @@ export const OPTIONS = {
 };
 
 export const SVG_COLORS = [
-  'stroke-red-600',
+  'stroke-rose-400',
   'stroke-teal-500',
   'stroke-orange-600',
   'stroke-purple-400',
   'stroke-lime-600',
   'stroke-sky-600',
-  'stroke-rose-400',
+  'stroke-red-600',
   'stroke-stone-600',
   'stroke-emerald-400',
 ];
 
 export const BADGES_COLORS = [
-  'bg-red-600',
+  'bg-rose-400',
   'bg-teal-500',
   'bg-orange-600',
   'bg-purple-400',
   'bg-lime-600',
   'bg-sky-600',
-  'bg-rose-400',
+  'bg-red-600',
   'bg-stone-600',
   'bg-emerald-400',
 ];
