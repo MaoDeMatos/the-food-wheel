@@ -29,7 +29,7 @@ function LeftMenuConfig() {
       <p className="text-lg font-bold">Configuration</p>
 
       <CustomSliderComponent
-        label="Initial speed :"
+        label="Initial speed (turns/sec) :"
         value={initialSpeed}
         handleValueChanges={(newVal: number) => {
           setInitialSpeed(newVal);
@@ -39,7 +39,7 @@ function LeftMenuConfig() {
         withCarets
       />
       <CustomSliderComponent
-        label="Slowdown speed :"
+        label="Slowdown time (seconds) :"
         value={slowdownSpeed}
         handleValueChanges={(newVal: number) => {
           setSlowdownSpeed(newVal);
@@ -56,7 +56,9 @@ function LeftMenuOptions() {
 
   return (
     <div className="space-y-4">
-      <p className="text-lg font-bold">Options</p>
+      <p className="text-lg font-bold">
+        Options <span className="text-xs italic">({OPTIONS.MAX} max.)</span>
+      </p>
 
       {options.map((opt, idx) => (
         <div key={idx} className="relative">

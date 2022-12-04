@@ -77,20 +77,18 @@ function RightMenuCaptions() {
       <div className="card-body">
         <p className="text-lg font-bold">Caption</p>
 
-        {filteredOptions.length < 2 && (
-          <p className="italic">
-            Enter at least two options in the other panel to start.
-          </p>
+        {filteredOptions.length < 1 && (
+          <p className="italic">No option entered.</p>
         )}
 
         {filteredOptions.length
           ? filteredOptions.map((opt, idx) => (
-              <p key={idx} className="flex items-center truncate">
-                <span
-                  className={`mr-2 inline-block h-3 w-3 rounded-full shadow ${BADGES_COLORS[idx]}`}
+              <div key={idx} className="flex items-center">
+                <p
+                  className={`mr-2 h-3 w-3 shrink-0 grow-0 rounded-full shadow ${BADGES_COLORS[idx]}`}
                 />
-                {`${idx + 1}. ${opt}`}
-              </p>
+                <p className="truncate">{`${idx + 1}. ${opt}`}</p>
+              </div>
             ))
           : null}
       </div>
