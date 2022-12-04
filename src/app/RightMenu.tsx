@@ -1,7 +1,7 @@
 'use client';
 
 import { Play } from 'react-feather';
-import { INITIAL_SPEED, SLOWDOWN_SPEED } from '../constants';
+import { BADGES_COLORS, INITIAL_SPEED, SLOWDOWN_SPEED } from '../constants';
 import { useDataStoreAsync } from '../DataStore';
 
 export function RightMenu() {
@@ -85,7 +85,10 @@ function RightMenuCaptions() {
 
         {filteredOptions.length
           ? filteredOptions.map((opt, idx) => (
-              <p key={idx} className="truncate">
+              <p key={idx} className="flex items-center truncate">
+                <span
+                  className={`mr-2 inline-block h-3 w-3 rounded-full shadow ${BADGES_COLORS[idx]}`}
+                />
                 {`${idx + 1}. ${opt}`}
               </p>
             ))

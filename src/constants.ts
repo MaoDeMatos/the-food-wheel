@@ -23,3 +23,15 @@ export const SVG_COLORS = [
   'stroke-stone-600',
   'stroke-emerald-400',
 ];
+
+export const BADGES_COLORS = [
+  'bg-red-600',
+  'bg-teal-500',
+  'bg-orange-600',
+  'bg-purple-400',
+  'bg-lime-600',
+  'bg-sky-600',
+  'bg-rose-400',
+  'bg-stone-600',
+  'bg-emerald-400',
+];
