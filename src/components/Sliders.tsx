@@ -1,6 +1,7 @@
 'use client';
 
 import { ChangeEvent, useMemo } from 'react';
+import { useDataStoreAsync } from '../DataStore';
 
 type CustomSliderComponentProps = {
   label?: string;
@@ -23,6 +24,8 @@ export function CustomSliderComponent({
   step = 1,
   withCarets = false,
 }: CustomSliderComponentProps) {
+  const { wheelStatus } = useDataStoreAsync();
+
   function valueChangeHandler(e: ChangeEvent<HTMLInputElement>) {
     // handleValueChanges(Math.max(min, Math.min(max, Number(e.target.value))));
     handleValueChanges(Number(e.target.value));
@@ -61,6 +64,7 @@ export function CustomSliderComponent({
           onChange={valueChangeHandler}
           min={min}
           max={max}
+          disabled={wheelStatus === 'spinning'}
         />
       </div>
 
@@ -69,9 +73,10 @@ export function CustomSliderComponent({
         min={min}
         max={max}
         value={value}
-        className="range range-primary range-xs"
+        className="range range-primary range-xs disabled:opacity-60"
         onChange={valueChangeHandler}
         step={step}
+        disabled={wheelStatus === 'spinning'}
       />
       <div className="flex w-full justify-between px-1 text-xs">
         {withCarets ? carets : null}
