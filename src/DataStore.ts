@@ -16,9 +16,9 @@ export const dataStore = proxy<IDataStore>({
   initialSpeed: 2,
   slowdownTime: 6,
   options: [
-    'Option A',
-    'Option B',
-    'Option C',
+    'KFK 2',
+    "McDo'",
+    // 'Option C',
     // 'Option D',
     // 'Option E',
     // 'Option F',

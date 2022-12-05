@@ -6,7 +6,8 @@ import { SVG_COLORS } from '../constants';
 import { changeWheelStatus, useDataStoreAsync } from '../DataStore';
 
 export function Wheel() {
-  const { wheelStatus, initialSpeed, slowdownTime } = useDataStoreAsync();
+  const { wheelStatus, initialSpeed, slowdownTime, options } =
+    useDataStoreAsync();
   const [localRotation, setLocalRotation] = useState(0);
   const [localDuration, setLocalDuration] = useState(0);
   const [result, setResult] = useState('');
@@ -20,12 +21,24 @@ export function Wheel() {
         setLocalRotation(0);
         changeWheelStatus('ready');
       } else {
-        setLocalDuration(0);
-        setLocalRotation(
-          Math.round(Math.random() * 360) + initialSpeed * 360 * slowdownTime
+        const randomRotation = Math.round(Math.random() * 360);
+        const arrowPos = 360 - randomRotation;
+
+        const optionsCount = options.filter(Boolean).length;
+        const sectionSize = (1 / optionsCount) * 360;
+        const sections = [...new Array(optionsCount)].map((_, idx) => [
+          idx * sectionSize,
+          (idx + 1) * sectionSize - 1,
+        ]);
+        const targetSectionIdx = sections.findIndex(
+          (el) => el[0] <= arrowPos && arrowPos < el[1]
         );
 
+        setLocalDuration(0);
+        setLocalRotation(randomRotation + initialSpeed * 360 * slowdownTime);
+
         timeout = setTimeout(() => {
+          setResult(options[targetSectionIdx]);
           changeWheelStatus('stopped');
         }, slowdownTime * 1000);
       }
