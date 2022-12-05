@@ -1,6 +1,6 @@
 import { LeftMenu } from './LeftMenu';
 import { RightMenu } from './RightMenu';
-import { Wheel } from './Wheel';
+import { WheelContainer } from './WheelContainer';
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
 
         <div className="flex flex-wrap items-start justify-center gap-8 sm:justify-between">
           <LeftMenu />
-          <Wheel />
+          <WheelContainer />
           <RightMenu />
         </div>
       </main>

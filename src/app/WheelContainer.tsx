@@ -5,7 +5,7 @@ import { ArrowDown } from 'react-feather';
 import { SVG_COLORS } from '../constants';
 import { changeWheelStatus, useDataStoreAsync } from '../DataStore';
 
-export function Wheel() {
+export function WheelContainer() {
   const { wheelStatus, initialSpeed, slowdownTime, options } =
     useDataStoreAsync();
   const [localRotation, setLocalRotation] = useState(0);
