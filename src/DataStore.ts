@@ -5,14 +5,16 @@ import { proxy, useSnapshot } from 'valtio';
 type Option = string;
 
 type IDataStore = {
+  wheelStatus: 'spinning' | 'stopped' | 'ready';
   initialSpeed: number;
-  slowdownSpeed: number;
+  slowdownTime: number;
   options: Option[];
 };
 
 export const dataStore = proxy<IDataStore>({
+  wheelStatus: 'ready',
   initialSpeed: 2,
-  slowdownSpeed: 8,
+  slowdownTime: 6,
   options: [
     'Option A',
     'Option B',
@@ -30,12 +32,16 @@ export const dataStore = proxy<IDataStore>({
 export const useDataStoreAsync = () => useSnapshot(dataStore);
 export const useDataStoreSync = () => useSnapshot(dataStore, { sync: true });
 
+export function changeWheelStatus(status: IDataStore['wheelStatus']) {
+  dataStore.wheelStatus = status;
+}
+
 export function setInitialSpeed(newSpeed: number) {
   dataStore.initialSpeed = newSpeed;
 }
 
-export function setSlowdownSpeed(newSpeed: number) {
-  dataStore.slowdownSpeed = newSpeed;
+export function setslowdownTime(newSpeed: number) {
+  dataStore.slowdownTime = newSpeed;
 }
 
 export const optionsActions = {

@@ -2,11 +2,11 @@
 
 import { Plus, X } from 'react-feather';
 import { CustomSliderComponent } from '../components/Sliders';
-import { INITIAL_SPEED, OPTIONS, SLOWDOWN_SPEED } from '../constants';
+import { INITIAL_SPEED, OPTIONS, SLOWDOWN_TIME } from '../constants';
 import {
   optionsActions,
   setInitialSpeed,
-  setSlowdownSpeed,
+  setslowdownTime,
   useDataStoreSync,
 } from '../DataStore';
 
@@ -22,7 +22,7 @@ export function LeftMenu() {
 }
 
 function LeftMenuConfig() {
-  const { initialSpeed, slowdownSpeed } = useDataStoreSync();
+  const { initialSpeed, slowdownTime } = useDataStoreSync();
 
   return (
     <div className="space-y-4">
@@ -40,12 +40,12 @@ function LeftMenuConfig() {
       />
       <CustomSliderComponent
         label="Slowdown time (seconds) :"
-        value={slowdownSpeed}
+        value={slowdownTime}
         handleValueChanges={(newVal: number) => {
-          setSlowdownSpeed(newVal);
+          setslowdownTime(newVal);
         }}
-        min={SLOWDOWN_SPEED.MIN}
-        max={SLOWDOWN_SPEED.MAX}
+        min={SLOWDOWN_TIME.MIN}
+        max={SLOWDOWN_TIME.MAX}
       />
     </div>
   );

@@ -1,38 +1,80 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { ArrowDown } from 'react-feather';
 import { SVG_COLORS } from '../constants';
-import { useDataStoreAsync } from '../DataStore';
+import { changeWheelStatus, useDataStoreAsync } from '../DataStore';
 
 export function Wheel() {
-  const { options } = useDataStoreAsync();
-  const optionsCount = options.filter(Boolean).length;
+  const { wheelStatus, initialSpeed, slowdownTime } = useDataStoreAsync();
+  const [localRotation, setLocalRotation] = useState(0);
+  const [localDuration, setLocalDuration] = useState(0);
+  const [result, setResult] = useState('');
+
+  useEffect(() => {
+    let timeout = setTimeout(() => {}, 1);
+
+    if (wheelStatus === 'spinning') {
+      if (localRotation) {
+        setLocalDuration(0.3);
+        setLocalRotation(0);
+        changeWheelStatus('ready');
+      } else {
+        setLocalDuration(0);
+        setLocalRotation(
+          Math.round(Math.random() * 360) + initialSpeed * 360 * slowdownTime
+        );
+
+        timeout = setTimeout(() => {
+          changeWheelStatus('stopped');
+        }, slowdownTime * 1000);
+      }
+    }
+
+    // Component cleanup to destroy the timeout
+    return () => clearTimeout(timeout);
+  }, [wheelStatus]);
 
   return (
-    <div className="relative flex aspect-square w-full items-center justify-center rounded-full bg-neutral text-center text-neutral-content shadow-xl sm:w-72 md:w-96">
-      {optionsCount ? (
-        <ArrowDown className="absolute left-1/2 -top-11 h-12 w-12 -translate-x-1/2" />
-      ) : null}
+    <div className="relative flex w-full flex-col gap-8 text-center sm:w-72 md:w-96">
+      <ArrowDown className="absolute left-1/2 -top-11 h-12 w-12 -translate-x-1/2" />
+      {/* <button
+        type="button"
+        className="btn-circle btn absolute right-0 -top-0 z-[1]"
+      >
+        <Edit2 />
+      </button> */}
 
-      {optionsCount ? (
-        <SvgWheel optionsCount={optionsCount} />
-      ) : (
-        <p className="text-2xl">
-          Add two options
-          <br /> to spin the wheel !
-        </p>
-      )}
-      {/* <Image src="/placeholder.jpg" alt="" className="object-contain" fill /> */}
+      <div
+        style={{
+          transform: `rotate(${localRotation}deg)`,
+          transitionDuration: `${
+            localDuration ? localDuration : slowdownTime
+          }s`,
+        }}
+        className="aspect-square w-full items-center justify-center rounded-full bg-neutral text-neutral-content shadow-xl transition-all ease-out"
+      >
+        <SvgWheel />
+        {/* <Image src="/placeholder.jpg" alt="" className="object-contain" fill /> */}
+      </div>
+
+      <p className="bg-gradient-to-r from-primary to-accent bg-clip-text text-center text-2xl font-extrabold text-transparent sm:text-4xl">
+        {result}
+      </p>
     </div>
   );
 }
 
-type SvgWheelProps = { optionsCount: number };
+// type SvgWheelProps = { optionsCount: number };
 
-function SvgWheel({ optionsCount }: SvgWheelProps) {
-  const deg = (1 / optionsCount) * 360;
-  const dashLength = ((1 / optionsCount) * Math.PI * 10).toFixed(2);
+// function SvgWheel({ optionsCount }: SvgWheelProps) {
+const SvgWheel = memo(function SvgWheel() {
+  const { options } = useDataStoreAsync();
+  const optionsCount = options.filter(Boolean).length;
+  const count = optionsCount > 1 ? optionsCount : 1;
+
+  const deg = (1 / count) * 360;
+  const dashLength = ((1 / count) * Math.PI * 10).toFixed(2);
 
   return (
     <svg
@@ -47,7 +89,7 @@ function SvgWheel({ optionsCount }: SvgWheelProps) {
         cy="10"
         className="fill-transparent transition-colors"
       />
-      {[...new Array(optionsCount)]
+      {[...new Array(count)]
         .map((opt, idx) => {
           return (
             <Section key={idx} index={idx} dashLength={dashLength} deg={deg} />
@@ -56,7 +98,7 @@ function SvgWheel({ optionsCount }: SvgWheelProps) {
         .reverse()}
     </svg>
   );
-}
+});
 
 type SectionProps = {
   index: number;

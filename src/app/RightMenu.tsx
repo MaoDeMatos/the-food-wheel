@@ -1,8 +1,8 @@
 'use client';
 
-import { Play } from 'react-feather';
-import { BADGES_COLORS, INITIAL_SPEED, SLOWDOWN_SPEED } from '../constants';
-import { useDataStoreAsync } from '../DataStore';
+import { FastForward, Play } from 'react-feather';
+import { BADGES_COLORS, INITIAL_SPEED, SLOWDOWN_TIME } from '../constants';
+import { changeWheelStatus, useDataStoreAsync } from '../DataStore';
 
 export function RightMenu() {
   return (
@@ -14,22 +14,22 @@ export function RightMenu() {
 }
 
 function SpinTheWheelButton() {
-  const { initialSpeed, slowdownSpeed, options } = useDataStoreAsync();
+  const { wheelStatus, initialSpeed, slowdownTime, options } =
+    useDataStoreAsync();
 
   const filteredOptions = options.filter(Boolean);
 
   const isInitialSpeedInRange =
     INITIAL_SPEED.MIN <= initialSpeed && initialSpeed <= INITIAL_SPEED.MAX;
-  const isSlowdownSpeedsInRange =
-    SLOWDOWN_SPEED.MIN <= slowdownSpeed && slowdownSpeed <= SLOWDOWN_SPEED.MAX;
+  const isslowdownTimesInRange =
+    SLOWDOWN_TIME.MIN <= slowdownTime && slowdownTime <= SLOWDOWN_TIME.MAX;
   const thereAreEnoughOptions = filteredOptions.length >= 2;
 
   const canSpinTheWheel =
-    isInitialSpeedInRange && isSlowdownSpeedsInRange && thereAreEnoughOptions;
-
-  function spinTheWheel() {
-    console.info('And the wheel spins !');
-  }
+    wheelStatus !== 'spinning' &&
+    isInitialSpeedInRange &&
+    isslowdownTimesInRange &&
+    thereAreEnoughOptions;
 
   function handleErrors() {
     console.error('One or mutiple errors occured :');
@@ -41,9 +41,9 @@ function SpinTheWheelButton() {
         `"initialSpeed" is not in range. initialSpeed: ${initialSpeed}`
       );
     }
-    if (!isSlowdownSpeedsInRange) {
+    if (!isslowdownTimesInRange) {
       console.error(
-        `"slowdownSpeed" is not in range. slowdownSpeed: ${slowdownSpeed}`
+        `"slowdownTime" is not in range. slowdownTime: ${slowdownTime}`
       );
     }
     if (!thereAreEnoughOptions) {
@@ -57,19 +57,28 @@ function SpinTheWheelButton() {
     <button
       className="btn-accent btn-circle btn w-full gap-2 shadow-md transition disabled:pointer-events-auto disabled:cursor-not-allowed disabled:shadow-sm"
       type="button"
-      onClick={canSpinTheWheel ? spinTheWheel : handleErrors}
+      onClick={
+        canSpinTheWheel ? () => changeWheelStatus('spinning') : handleErrors
+      }
       disabled={!canSpinTheWheel}
     >
-      <Play />
-      Spin the wheel !
+      {wheelStatus === 'ready' ? (
+        <>
+          <Play />
+          Spin the wheel !
+        </>
+      ) : (
+        <>
+          <FastForward className="rotate-180" />
+          Reset
+        </>
+      )}
     </button>
   );
 }
 
 function RightMenuCaptions() {
   const { options } = useDataStoreAsync();
-
-  // const filteredOptions = useMemo(() => options.filter(Boolean), [options]);
   const filteredOptions = options.filter(Boolean);
 
   return (
@@ -77,8 +86,8 @@ function RightMenuCaptions() {
       <div className="card-body">
         <p className="text-lg font-bold">Caption</p>
 
-        {filteredOptions.length < 1 && (
-          <p className="italic">No option entered.</p>
+        {filteredOptions.length < 2 && (
+          <p className="italic">Add at least two options to spin the wheel !</p>
         )}
 
         {filteredOptions.length
