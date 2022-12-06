@@ -3,7 +3,7 @@ export const INITIAL_SPEED = {
   MAX: 9,
 };
 
-export const SLOWDOWN_SPEED = {
+export const SLOWDOWN_TIME = {
   MIN: 1,
   MAX: 20,
 };

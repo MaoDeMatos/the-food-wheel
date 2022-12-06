@@ -2,11 +2,11 @@
 
 import { Plus, X } from 'react-feather';
 import { CustomSliderComponent } from '../components/Sliders';
-import { INITIAL_SPEED, OPTIONS, SLOWDOWN_SPEED } from '../constants';
+import { INITIAL_SPEED, OPTIONS, SLOWDOWN_TIME } from '../constants';
 import {
   optionsActions,
   setInitialSpeed,
-  setSlowdownSpeed,
+  setslowdownTime,
   useDataStoreSync,
 } from '../DataStore';
 
@@ -22,7 +22,7 @@ export function LeftMenu() {
 }
 
 function LeftMenuConfig() {
-  const { initialSpeed, slowdownSpeed } = useDataStoreSync();
+  const { initialSpeed, slowdownTime } = useDataStoreSync();
 
   return (
     <div className="space-y-4">
@@ -40,19 +40,19 @@ function LeftMenuConfig() {
       />
       <CustomSliderComponent
         label="Slowdown time (seconds) :"
-        value={slowdownSpeed}
+        value={slowdownTime}
         handleValueChanges={(newVal: number) => {
-          setSlowdownSpeed(newVal);
+          setslowdownTime(newVal);
         }}
-        min={SLOWDOWN_SPEED.MIN}
-        max={SLOWDOWN_SPEED.MAX}
+        min={SLOWDOWN_TIME.MIN}
+        max={SLOWDOWN_TIME.MAX}
       />
     </div>
   );
 }
 
 function LeftMenuOptions() {
-  const { options } = useDataStoreSync();
+  const { options, wheelStatus } = useDataStoreSync();
 
   return (
     <div className="space-y-4">
@@ -73,11 +73,16 @@ function LeftMenuOptions() {
             onChange={(e) =>
               optionsActions.updateOptionValue(idx, e.target.value)
             }
+            disabled={wheelStatus === 'spinning'}
           />
-          <X
-            className="absolute top-[52%] right-1.5 z-[1] h-6 w-6 -translate-y-1/2 cursor-pointer rounded-full p-1 ring-current transition hover:ring-2"
+          <button
+            type="button"
+            className="absolute top-[52%] right-1.5 z-[1] h-6 w-6 -translate-y-1/2 rounded-full p-1 ring-current transition hover:ring-2 disabled:cursor-not-allowed disabled:hover:ring-0"
             onClick={() => optionsActions.removeOptionById(idx)}
-          />
+            disabled={wheelStatus === 'spinning'}
+          >
+            <X className="h-full w-full" />
+          </button>
         </div>
       ))}
 
