@@ -27,11 +27,11 @@ export function CustomSliderComponent({
   const { wheelStatus } = useDataStoreAsync();
 
   function valueChangeHandler(e: ChangeEvent<HTMLInputElement>) {
-    // handleValueChanges(Math.max(min, Math.min(max, Number(e.target.value))));
     handleValueChanges(Number(e.target.value));
   }
 
   const carets = useMemo(() => {
+    if (!withCarets) return null;
     const arr: number[] = [];
 
     for (let i = min; i <= max; i++) {
@@ -50,7 +50,7 @@ export function CustomSliderComponent({
             <span>{el}</span>
           </div>
         ));
-  }, [min, max]);
+  }, [withCarets, min, max]);
 
   return (
     <div>
@@ -78,9 +78,7 @@ export function CustomSliderComponent({
         step={step}
         disabled={wheelStatus === 'spinning'}
       />
-      <div className="flex w-full justify-between px-1 text-xs">
-        {withCarets ? carets : null}
-      </div>
+      <div className="flex w-full justify-between px-1 text-xs">{carets}</div>
     </div>
   );
 }
