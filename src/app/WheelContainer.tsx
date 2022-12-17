@@ -1,9 +1,10 @@
 'use client';
 
 import { memo, useEffect, useState } from 'react';
-import { ArrowDown, FileMinus, Image } from 'react-feather';
+import { ArrowDown } from 'react-feather';
 import { SVG_COLORS } from '../constants';
 import { changeWheelStatus, useDataStoreAsync } from '../DataStore';
+import { ChangeWheelImageButton } from './ChangeWheelImageButton';
 
 export function WheelContainer() {
   const { wheelStatus, initialSpeed, slowdownTime, options } =
@@ -53,7 +54,7 @@ export function WheelContainer() {
     <div className="relative flex w-full flex-col gap-8 text-center sm:w-72 md:w-96">
       <div className="flex flex-col items-center justify-center">
         <ArrowDown className="h-12 w-12" />
-        {/* <ChangeImageButton /> */}
+        <ChangeWheelImageButton />
         <div
           style={{
             transform: `rotate(${localRotation}deg)`,
@@ -74,9 +75,6 @@ export function WheelContainer() {
   );
 }
 
-// type SvgWheelProps = { optionsCount: number };
-
-// function SvgWheel({ optionsCount }: SvgWheelProps) {
 const SvgWheel = memo(function SvgWheel() {
   const { options } = useDataStoreAsync();
   const optionsCount = options.filter(Boolean).length;
