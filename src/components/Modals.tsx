@@ -10,6 +10,10 @@ export type ModalProps = {
     HTMLLabelElement
   >;
   modalContent?: ReactElement | ReactElement[];
+  modalBoxProps?: DetailedHTMLProps<
+    LabelHTMLAttributes<HTMLLabelElement>,
+    HTMLLabelElement
+  >;
 };
 
 export function Modal({
@@ -17,7 +21,16 @@ export function Modal({
   buttonContent,
   buttonProps,
   modalContent,
+  modalBoxProps,
 }: ModalProps) {
+  const { className, ...restProps } = modalBoxProps ?? {};
+  const boxProps = {
+    className: `modal-box relative bg-neutral text-neutral-content ${
+      className ?? ''
+    }`,
+    ...restProps,
+  };
+
   return (
     <>
       <label htmlFor={modalUniqueID} {...buttonProps}>
@@ -26,7 +39,7 @@ export function Modal({
 
       <input type="checkbox" id={modalUniqueID} className="modal-toggle" />
       <label htmlFor={modalUniqueID} className="modal cursor-pointer">
-        <label className="modal-box relative" htmlFor="">
+        <label htmlFor="" {...boxProps}>
           {modalContent}
         </label>
       </label>
