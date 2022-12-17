@@ -36,6 +36,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## TODO
 
-- [ ] Replace the wheel with a custom image
-- [ ] Translate (FR/EN)
+- [x] Replace the wheel with a custom image
+- [ ] Change color themes manually
+- [ ] Translate (FR/EN) & change language manually
 - [ ] Add options as URL parameters in order to save them
