@@ -1,13 +1,14 @@
 'use client';
 
+import Image from 'next/image';
 import { memo, useEffect, useState } from 'react';
 import { ArrowDown } from 'react-feather';
 import { SVG_COLORS } from '../constants';
 import { changeWheelStatus, useDataStoreAsync } from '../DataStore';
-import { ChangeWheelImageButton } from './ChangeWheelImageButton';
+import { ChangeWheelImage } from './ChangeWheelImageButton';
 
 export function WheelContainer() {
-  const { wheelStatus, initialSpeed, slowdownTime, options } =
+  const { wheelStatus, initialSpeed, slowdownTime, options, image } =
     useDataStoreAsync();
   const [localRotation, setLocalRotation] = useState(0);
   const [localDuration, setLocalDuration] = useState(0);
@@ -54,7 +55,7 @@ export function WheelContainer() {
     <div className="relative flex w-full flex-col gap-8 text-center sm:w-72 md:w-96">
       <div className="flex flex-col items-center justify-center">
         <ArrowDown className="h-12 w-12" />
-        <ChangeWheelImageButton />
+        <ChangeWheelImage />
         <div
           style={{
             transform: `rotate(${localRotation}deg)`,
@@ -64,8 +65,7 @@ export function WheelContainer() {
           }}
           className="aspect-square w-full items-center justify-center rounded-full bg-neutral text-neutral-content transition-all ease-out"
         >
-          <SvgWheel />
-          {/* <Image src="/placeholder.jpg" alt="" className="object-contain" fill /> */}
+          {image ? <WheelImage /> : <SvgWheel />}
         </div>
       </div>
       <p className="bg-gradient-to-r from-primary to-accent bg-clip-text text-center text-2xl font-extrabold !leading-snug text-transparent sm:text-4xl">
@@ -74,6 +74,16 @@ export function WheelContainer() {
     </div>
   );
 }
+
+const WheelImage = memo(function WheelImage() {
+  const { image } = useDataStoreAsync();
+
+  return image ? (
+    <div className="relative h-full w-full overflow-hidden rounded-full border border-primary">
+      <Image src={image} alt="" fill className="object-cover" />
+    </div>
+  ) : null;
+});
 
 const SvgWheel = memo(function SvgWheel() {
   const { options } = useDataStoreAsync();

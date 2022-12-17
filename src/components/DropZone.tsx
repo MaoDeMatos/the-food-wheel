@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, DragEvent } from 'react';
+import { useState, DragEvent, ReactNode } from 'react';
 
 export type DropZoneProps = {
-  label?: string;
+  content?: ReactNode;
   onDrop: (e: DragEvent<HTMLDivElement>) => void;
 };
 
-export function DropZone({ label, onDrop }: DropZoneProps) {
+export function DropZone({ content, onDrop }: DropZoneProps) {
   const [isDraggingOver, setIsDraggingOver] = useState(false);
 
   function dropHandler(e: DragEvent<HTMLDivElement>) {
@@ -42,7 +42,7 @@ export function DropZone({ label, onDrop }: DropZoneProps) {
         onDrop={dropHandler}
         className="rounded-lg border-4 border-dashed border-base-300 py-8 px-6"
       >
-        {label}
+        {content}
       </div>
     </div>
   );
