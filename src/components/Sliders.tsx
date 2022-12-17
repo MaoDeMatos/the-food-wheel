@@ -2,14 +2,16 @@
 
 import { ChangeEvent, useMemo } from 'react';
 import { useDataStoreAsync } from '../DataStore';
+import { slugify } from '../utils';
 
 type CustomSliderComponentProps = {
-  label?: string;
+  label: string;
+  isLabelVisible?: boolean;
   value: number;
   handleValueChanges: (newVal: number) => void;
   min?: number;
-  /** Make sure yourwith carets enabled,
-   * or update the component to avoid breaking it */
+  /** Make sure your `max` value is not too high with carets enabled,
+   * or update the component to avoid breaking the carets */
   max: number;
   step?: number;
   withCarets?: boolean;
@@ -17,6 +19,7 @@ type CustomSliderComponentProps = {
 
 export function CustomSliderComponent({
   label,
+  isLabelVisible = true,
   value,
   handleValueChanges,
   min = 0,
@@ -52,10 +55,15 @@ export function CustomSliderComponent({
         ));
   }, [withCarets, min, max]);
 
+  const labelId = slugify(label);
+  const labelIdSlider = slugify(label + ' slider');
+
   return (
     <div>
       <div className="flex items-center justify-between pb-2">
-        <p>{label}</p>
+        <label htmlFor={labelId} className={!isLabelVisible ? 'sr-only' : ''}>
+          {label}
+        </label>
         <input
           type="number"
           dir="rtl"
@@ -65,9 +73,13 @@ export function CustomSliderComponent({
           min={min}
           max={max}
           disabled={wheelStatus === 'spinning'}
+          id={labelId}
         />
       </div>
 
+      <label htmlFor={labelIdSlider} className="sr-only">
+        {label}
+      </label>
       <input
         type="range"
         min={min}
@@ -77,6 +89,7 @@ export function CustomSliderComponent({
         onChange={valueChangeHandler}
         step={step}
         disabled={wheelStatus === 'spinning'}
+        id={labelIdSlider}
       />
       <div className="flex w-full justify-between px-1 text-xs">{carets}</div>
     </div>
