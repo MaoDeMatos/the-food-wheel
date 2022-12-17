@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body > div:first-of-type {
+  @apply overflow-hidden;
+}
+
 html,
 body,
 body > div:first-of-type {

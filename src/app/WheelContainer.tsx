@@ -1,7 +1,7 @@
 'use client';
 
 import { memo, useEffect, useState } from 'react';
-import { ArrowDown } from 'react-feather';
+import { ArrowDown, FileMinus, Image } from 'react-feather';
 import { SVG_COLORS } from '../constants';
 import { changeWheelStatus, useDataStoreAsync } from '../DataStore';
 
@@ -46,31 +46,27 @@ export function WheelContainer() {
 
     // Component cleanup to destroy the timeout
     return () => clearTimeout(timeout);
+    // eslint-disable-next-line
   }, [wheelStatus]);
 
   return (
     <div className="relative flex w-full flex-col gap-8 text-center sm:w-72 md:w-96">
-      <ArrowDown className="absolute left-1/2 -top-11 h-12 w-12 -translate-x-1/2" />
-      {/* <button
-        type="button"
-        className="btn-circle btn absolute right-0 -top-0 z-[1]"
-      >
-        <Edit2 />
-      </button> */}
-
-      <div
-        style={{
-          transform: `rotate(${localRotation}deg)`,
-          transitionDuration: `${
-            localDuration ? localDuration : slowdownTime
-          }s`,
-        }}
-        className="aspect-square w-full items-center justify-center rounded-full bg-neutral text-neutral-content shadow-xl transition-all ease-out"
-      >
-        <SvgWheel />
-        {/* <Image src="/placeholder.jpg" alt="" className="object-contain" fill /> */}
+      <div className="flex flex-col items-center justify-center">
+        <ArrowDown className="h-12 w-12" />
+        {/* <ChangeImageButton /> */}
+        <div
+          style={{
+            transform: `rotate(${localRotation}deg)`,
+            transitionDuration: `${
+              localDuration ? localDuration : slowdownTime
+            }s`,
+          }}
+          className="aspect-square w-full items-center justify-center rounded-full bg-neutral text-neutral-content transition-all ease-out"
+        >
+          <SvgWheel />
+          {/* <Image src="/placeholder.jpg" alt="" className="object-contain" fill /> */}
+        </div>
       </div>
-
       <p className="bg-gradient-to-r from-primary to-accent bg-clip-text text-center text-2xl font-extrabold !leading-snug text-transparent sm:text-4xl">
         {result}
       </p>
@@ -103,7 +99,7 @@ const SvgWheel = memo(function SvgWheel() {
         className="fill-transparent transition-colors"
       />
       {[...new Array(count)]
-        .map((opt, idx) => {
+        .map((_, idx) => {
           return (
             <Section key={idx} index={idx} dashLength={dashLength} deg={deg} />
           );
