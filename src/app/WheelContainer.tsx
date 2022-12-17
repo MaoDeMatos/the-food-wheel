@@ -1,12 +1,14 @@
 'use client';
 
+import Image from 'next/image';
 import { memo, useEffect, useState } from 'react';
 import { ArrowDown } from 'react-feather';
 import { SVG_COLORS } from '../constants';
 import { changeWheelStatus, useDataStoreAsync } from '../DataStore';
+import { ChangeWheelImage } from './ChangeWheelImageButton';
 
 export function WheelContainer() {
-  const { wheelStatus, initialSpeed, slowdownTime, options } =
+  const { wheelStatus, initialSpeed, slowdownTime, options, image } =
     useDataStoreAsync();
   const [localRotation, setLocalRotation] = useState(0);
   const [localDuration, setLocalDuration] = useState(0);
@@ -46,31 +48,26 @@ export function WheelContainer() {
 
     // Component cleanup to destroy the timeout
     return () => clearTimeout(timeout);
+    // eslint-disable-next-line
   }, [wheelStatus]);
 
   return (
     <div className="relative flex w-full flex-col gap-8 text-center sm:w-72 md:w-96">
-      <ArrowDown className="absolute left-1/2 -top-11 h-12 w-12 -translate-x-1/2" />
-      {/* <button
-        type="button"
-        className="btn-circle btn absolute right-0 -top-0 z-[1]"
-      >
-        <Edit2 />
-      </button> */}
-
-      <div
-        style={{
-          transform: `rotate(${localRotation}deg)`,
-          transitionDuration: `${
-            localDuration ? localDuration : slowdownTime
-          }s`,
-        }}
-        className="aspect-square w-full items-center justify-center rounded-full bg-neutral text-neutral-content shadow-xl transition-all ease-out"
-      >
-        <SvgWheel />
-        {/* <Image src="/placeholder.jpg" alt="" className="object-contain" fill /> */}
+      <div className="flex flex-col items-center justify-center">
+        <ArrowDown className="h-12 w-12" />
+        <ChangeWheelImage />
+        <div
+          style={{
+            transform: `rotate(${localRotation}deg)`,
+            transitionDuration: `${
+              localDuration ? localDuration : slowdownTime
+            }s`,
+          }}
+          className="aspect-square w-full items-center justify-center rounded-full bg-neutral text-neutral-content transition-all ease-out"
+        >
+          {image ? <WheelImage /> : <SvgWheel />}
+        </div>
       </div>
-
       <p className="bg-gradient-to-r from-primary to-accent bg-clip-text text-center text-2xl font-extrabold !leading-snug text-transparent sm:text-4xl">
         {result}
       </p>
@@ -78,9 +75,16 @@ export function WheelContainer() {
   );
 }
 
-// type SvgWheelProps = { optionsCount: number };
+const WheelImage = memo(function WheelImage() {
+  const { image } = useDataStoreAsync();
 
-// function SvgWheel({ optionsCount }: SvgWheelProps) {
+  return image ? (
+    <div className="relative h-full w-full overflow-hidden rounded-full border border-primary">
+      <Image src={image} alt="" fill className="object-cover" />
+    </div>
+  ) : null;
+});
+
 const SvgWheel = memo(function SvgWheel() {
   const { options } = useDataStoreAsync();
   const optionsCount = options.filter(Boolean).length;
@@ -103,7 +107,7 @@ const SvgWheel = memo(function SvgWheel() {
         className="fill-transparent transition-colors"
       />
       {[...new Array(count)]
-        .map((opt, idx) => {
+        .map((_, idx) => {
           return (
             <Section key={idx} index={idx} dashLength={dashLength} deg={deg} />
           );

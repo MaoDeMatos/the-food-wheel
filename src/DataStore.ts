@@ -4,11 +4,14 @@ import { proxy, useSnapshot } from 'valtio';
 
 type Option = string;
 
+type WheelImage = string;
+
 type IDataStore = {
   wheelStatus: 'spinning' | 'stopped' | 'ready';
   initialSpeed: number;
   slowdownTime: number;
   options: Option[];
+  image: WheelImage | null;
 };
 
 export const dataStore = proxy<IDataStore>({
@@ -27,6 +30,7 @@ export const dataStore = proxy<IDataStore>({
     // 'Option I',
     '',
   ],
+  image: null,
 });
 
 export const useDataStoreAsync = () => useSnapshot(dataStore);
@@ -58,3 +62,7 @@ export const optionsActions = {
     dataStore.options[index] = option;
   },
 };
+
+export function setImage(newValue: IDataStore['image']) {
+  dataStore.image = newValue;
+}
