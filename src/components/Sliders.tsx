@@ -64,22 +64,14 @@ export function CustomSliderComponent({
         <label htmlFor={labelId} className={!isLabelVisible ? 'sr-only' : ''}>
           {label}
         </label>
-        <input
-          type="number"
-          dir="rtl"
-          className="input-ghost input input-xs text-sm font-bold text-primary"
-          value={value}
-          onChange={valueChangeHandler}
-          min={min}
-          max={max}
-          disabled={wheelStatus === 'spinning'}
-          id={labelId}
-        />
+
+        <span className="font-bold">{value}</span>
       </div>
 
       <label htmlFor={labelIdSlider} className="sr-only">
         {label}
       </label>
+
       <input
         type="range"
         min={min}
