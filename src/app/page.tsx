@@ -22,7 +22,7 @@ export default function Home() {
             The Food Wheel !
           </h1>
 
-          <div className="mt-4 text-center text-sm font-bold">
+          <div className="mt-4 text-center">
             <p>
               {
                 "Don't know where to eat ? The food wheel will tell you where to go !"
