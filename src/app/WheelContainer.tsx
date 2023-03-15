@@ -47,7 +47,6 @@ export function WheelContainer() {
 
     // Component cleanup to destroy the timeout
     return () => clearTimeout(timeout);
-    // eslint-disable-next-line
   }, [wheelStatus]);
 
   return (
