@@ -1,5 +1,3 @@
-'use client';
-
 import Image from 'next/image';
 import { memo, useState, useEffect } from 'react';
 import { SVG_COLORS } from '../constants';

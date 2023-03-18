@@ -1,5 +1,3 @@
-'use client';
-
 import { ChangeEvent, useMemo } from 'react';
 import { useDataStoreAsync } from '../DataStore';
 import { slugify } from '../utils';

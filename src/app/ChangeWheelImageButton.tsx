@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useMemo, useState } from 'react';
 import { FileMinus, Image } from 'react-feather';
 import { DropZone, DropZoneProps } from '../components/DropZone';

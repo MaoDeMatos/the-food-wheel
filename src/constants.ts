@@ -8,10 +8,6 @@ export const SLOWDOWN_TIME = {
   MAX: 20,
 };
 
-export const OPTIONS = {
-  MAX: 9,
-};
-
 export const SVG_COLORS = [
   'stroke-rose-400',
   'stroke-teal-500',
