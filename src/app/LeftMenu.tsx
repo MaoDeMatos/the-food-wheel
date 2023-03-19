@@ -33,6 +33,7 @@ function LeftMenuConfig() {
       <CustomSliderComponent
         label="Initial speed (turns/sec) :"
         value={initialSpeed}
+        isValueVisible={false}
         handleValueChanges={(newVal: number) => {
           setInitialSpeed(newVal);
         }}
