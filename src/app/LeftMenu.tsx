@@ -2,13 +2,13 @@
 
 import { Plus } from 'react-feather';
 import { CustomSliderComponent } from '../components/Sliders';
-import { INITIAL_SPEED, SLOWDOWN_TIME } from '../constants';
+import { INITIAL_SPEED, SLOWDOWN_TIME } from './utils/constants';
 import {
   optionsActions,
   setInitialSpeed,
   setslowdownTime,
   useDataStoreSync,
-} from '../DataStore';
+} from './utils/DataStore';
 
 export function LeftMenu() {
   return (
