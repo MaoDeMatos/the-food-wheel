@@ -10,3 +10,7 @@ export function slugify(text: string) {
     .replace(/^-+/, '') //trim starting dash
     .replace(/-+$/, ''); //trim ending dash
 }
+
+export function classNames(...classes: (string | boolean)[]) {
+  return classes.filter(Boolean).join(' ');
+}
