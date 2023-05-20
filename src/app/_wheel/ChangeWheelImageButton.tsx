@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { FileMinus, Image } from 'react-feather';
-import { DropZone, DropZoneProps } from '../components/DropZone';
-import { useDataStoreAsync, setImage } from '../utils/DataStore';
+import { DropZone, DropZoneProps } from '../../components/DropZone';
+import { useDataStoreAsync, setImage } from '../../utils/DataStore';
 
 export function ChangeWheelImage() {
   const { image } = useDataStoreAsync();
@@ -44,7 +44,7 @@ export function ChangeWheelImage() {
     <>
       <button
         type="button"
-        className="btn-primary btn-circle btn absolute right-0 -top-0 z-[1] flex p-1"
+        className="btn-primary btn-circle btn absolute -top-0 right-0 z-[1] flex p-1"
         onClick={() => (hasImage ? setImage(null) : setModalIsOpen(true))}
       >
         <Icon />

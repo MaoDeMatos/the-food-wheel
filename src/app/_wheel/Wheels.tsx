@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { memo, useState, useEffect } from 'react';
-import { SVG_COLORS } from '../utils/constants';
-import { useDataStoreAsync } from '../utils/DataStore';
+import { SVG_COLORS } from '../../utils/constants';
+import { useDataStoreAsync } from '../../utils/DataStore';
 
 export const ImageWheel = memo(function ImageWheel() {
   const { image } = useDataStoreAsync();

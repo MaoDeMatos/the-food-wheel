@@ -1,7 +1,7 @@
 import { LeftMenu } from './LeftMenu';
 import { RightMenu } from './RightMenu';
 import { ThemeSelector } from './ThemeSelector';
-import { WheelContainer } from './WheelContainer';
+import { WheelContainer } from './_wheel/WheelContainer';
 import { GitHub } from 'react-feather';
 
 function VerticalDivider() {
@@ -11,7 +11,7 @@ function VerticalDivider() {
 export default function Home() {
   return (
     <main className="flex flex-col items-center gap-12 px-4 py-12 sm:gap-24 sm:px-8 sm:py-14">
-      <div className="fixed top-3 right-3 z-10 flex gap-4">
+      <div className="fixed right-3 top-3 z-10 flex gap-4">
         <ThemeSelector />
         <VerticalDivider />
         <a

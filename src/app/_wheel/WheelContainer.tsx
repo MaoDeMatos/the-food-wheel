@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { ArrowDown } from 'react-feather';
-import { changeWheelStatus, useDataStoreAsync } from '../utils/DataStore';
+import { changeWheelStatus, useDataStoreAsync } from '../../utils/DataStore';
 import { ChangeWheelImage } from './ChangeWheelImageButton';
 import { ImageWheel, SvgWheel } from './Wheels';
 
