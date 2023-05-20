@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 body > div:first-of-type {
-  @apply overflow-hidden transition-colors duration-700;
+  @apply overflow-hidden;
+}
+
+html {
+  @apply transition-colors duration-500;
 }
 
 html,
