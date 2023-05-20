@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={work_sans.variable}>
+    <html lang="en" className={work_sans.variable} suppressHydrationWarning>
       {/* <head /> will contain components hydrated by the metadata constant.
        * Find out more at https://beta.nextjs.org/docs/api-reference/metadata */}
       <head>
