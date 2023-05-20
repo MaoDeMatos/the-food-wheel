@@ -1,8 +1,15 @@
 import { Metadata } from 'next';
 import { Work_Sans } from 'next/font/google';
+// import Script from 'next/script';
 
 // import '../build/styles.css'; // Used when Turbopack is enabled
 import './globals.css'; // Used when Turbopack is disabled
+
+const work_sans = Work_Sans({
+  subsets: ['latin'],
+  variable: '--font-work-sans',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'The Food Wheel',
@@ -17,12 +24,6 @@ export const metadata: Metadata = {
   ],
 };
 
-const work_sans = Work_Sans({
-  subsets: ['latin'],
-  variable: '--font-work-sans',
-  display: 'swap',
-});
-
 export default function RootLayout({
   children,
 }: {
@@ -30,8 +31,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={work_sans.variable}>
-      {/* <head /> will contain components hydrated by the metadata constant. Find out more at https://beta.nextjs.org/docs/api-reference/metadata */}
-      <head />
+      {/* <head /> will contain components hydrated by the metadata constant.
+       * Find out more at https://beta.nextjs.org/docs/api-reference/metadata */}
+      <head>
+        {/* TODO: <Script /> does NOT work yet, use a better method when available */}
+        {/* <Script
+          id="init-theme"
+          src="/scripts/initTheme.min.js"
+          strategy="beforeInteractive"
+        /> */}
+        <script
+          id="init-theme"
+          type="text/javascript"
+          src="/scripts/initTheme.min.js"
+          async
+        />
+      </head>
+
       <body>{children}</body>
     </html>
   );
