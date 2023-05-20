@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { ArrowDown } from 'react-feather';
-import { changeWheelStatus, useDataStoreAsync } from '../DataStore';
+import { changeWheelStatus, useDataStoreAsync } from '../../utils/DataStore';
 import { ChangeWheelImage } from './ChangeWheelImageButton';
 import { ImageWheel, SvgWheel } from './Wheels';
 
@@ -47,7 +47,6 @@ export function WheelContainer() {
 
     // Component cleanup to destroy the timeout
     return () => clearTimeout(timeout);
-    // eslint-disable-next-line
   }, [wheelStatus]);
 
   return (

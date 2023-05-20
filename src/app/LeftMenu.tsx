@@ -2,13 +2,13 @@
 
 import { Plus } from 'react-feather';
 import { CustomSliderComponent } from '../components/Sliders';
-import { INITIAL_SPEED, OPTIONS, SLOWDOWN_TIME } from '../constants';
+import { INITIAL_SPEED, SLOWDOWN_TIME } from '../utils/constants';
 import {
   optionsActions,
   setInitialSpeed,
   setslowdownTime,
   useDataStoreSync,
-} from '../DataStore';
+} from '../utils/DataStore';
 
 export function LeftMenu() {
   return (
@@ -21,6 +21,8 @@ export function LeftMenu() {
   );
 }
 
+const MAX_OPTIONS_NUMBER = 9;
+
 function LeftMenuConfig() {
   const { initialSpeed, slowdownTime } = useDataStoreSync();
 
@@ -31,6 +33,7 @@ function LeftMenuConfig() {
       <CustomSliderComponent
         label="Initial speed (turns/sec) :"
         value={initialSpeed}
+        isValueVisible={false}
         handleValueChanges={(newVal: number) => {
           setInitialSpeed(newVal);
         }}
@@ -57,7 +60,8 @@ function LeftMenuOptions() {
   return (
     <div className="space-y-4">
       <p className="text-lg font-bold">
-        Options <span className="text-xs italic">({OPTIONS.MAX} max.)</span>
+        Options{' '}
+        <span className="text-xs italic">({MAX_OPTIONS_NUMBER} max.)</span>
       </p>
 
       {options.map((opt, idx) => (
@@ -86,7 +90,7 @@ function LeftMenuOptions() {
         </div>
       ))}
 
-      {options.length < OPTIONS.MAX && (
+      {options.length < MAX_OPTIONS_NUMBER && (
         <button
           className="btn-primary btn w-full gap-2"
           type="button"

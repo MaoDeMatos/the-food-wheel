@@ -1,5 +1,3 @@
-'use client';
-
 import { useState, DragEvent, ReactNode } from 'react';
 
 export type DropZoneProps = {

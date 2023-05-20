@@ -1,14 +1,20 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['var(--font-work-sans)', ...defaultTheme.fontFamily.sans],
+      },
+    },
   },
   plugins: [require('daisyui')],
   daisyui: {
     themes: [
       {
-        'custom-light': {
+        light: {
           'color-scheme': 'light',
           primary: '#9B76A7',
           'primary-content': '#F9FAFB',
@@ -21,7 +27,7 @@ module.exports = {
         },
       },
       {
-        'dracula-custom': {
+        dark: {
           'color-scheme': 'dark',
           primary: '#bd93f9',
           secondary: '#ff79c6',
@@ -36,6 +42,6 @@ module.exports = {
         },
       },
     ],
-    darkTheme: 'dracula-custom',
+    darkTheme: 'dark',
   },
 };

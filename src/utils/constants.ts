@@ -8,10 +8,6 @@ export const SLOWDOWN_TIME = {
   MAX: 20,
 };
 
-export const OPTIONS = {
-  MAX: 9,
-};
-
 export const SVG_COLORS = [
   'stroke-rose-400',
   'stroke-teal-500',
@@ -35,3 +31,18 @@ export const BADGES_COLORS = [
   'bg-stone-600',
   'bg-emerald-400',
 ];
+
+// const COLORS = [
+//   'rose-400',
+//   'teal-500',
+//   'orange-600',
+//   'purple-400',
+//   'lime-600',
+//   'sky-600',
+//   'red-600',
+//   'stone-600',
+//   'emerald-400',
+// ] as const;
+
+// export const SVG_COLORS = COLORS.map((el) => `stroke-${el}`);
+// export const BADGES_COLORS = COLORS.map((el) => `bg-${el}`);
