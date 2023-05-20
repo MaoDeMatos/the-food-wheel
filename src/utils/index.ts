@@ -14,3 +14,5 @@ export function slugify(text: string) {
 export function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(' ');
 }
+
+export const isServer = typeof window === 'undefined';

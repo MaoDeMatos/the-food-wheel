@@ -1,9 +1,15 @@
 'use client';
 
-import { ButtonHTMLAttributes, useEffect } from 'react';
+import { ButtonHTMLAttributes, useEffect, useState } from 'react';
 
-import { themes, changeTheme, useThemeStore } from '../utils/ColorTheme';
-import { classNames } from '../utils';
+import {
+  THEMES,
+  ThemesType,
+  getSystemTheme,
+  THEME_STORAGE_KEY,
+  MEDIA,
+} from '@/utils/ColorTheme';
+import { classNames } from '@/utils';
 
 interface ThemeButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   themeClasses: string;
@@ -22,7 +28,26 @@ const ThemeButton = ({ active, themeClasses, ...props }: ThemeButtonProps) => (
 );
 
 export function ThemeSelector() {
-  const { currentTheme } = useThemeStore();
+  const [currentTheme, setCurrentTheme] = useState<ThemesType | null>(null);
+
+  function changeTheme(newTheme: ThemesType) {
+    document.documentElement.setAttribute(
+      'data-theme',
+      newTheme === 'system' ? getSystemTheme() : newTheme
+    );
+    setCurrentTheme(newTheme);
+    localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(newTheme));
+  }
+
+  // Init button state
+  useEffect(() => {
+    const storedThemeString = localStorage.getItem(THEME_STORAGE_KEY);
+    const initialValue = storedThemeString
+      ? (JSON.parse(storedThemeString) as ThemesType)
+      : 'system';
+
+    changeTheme(initialValue);
+  }, []);
 
   // Change theme when system theme updates
   useEffect(
@@ -33,20 +58,16 @@ export function ThemeSelector() {
         }
       };
 
-      const mq = window.matchMedia('(prefers-color-scheme: dark)');
-
+      const mq = window.matchMedia(MEDIA);
       mq.addEventListener('change', setSystemTheme);
-
       return () => mq.removeEventListener('change', setSystemTheme);
     },
     // You need this dependencies or the listener will never update current theme value
     [currentTheme, changeTheme]
   );
 
-  // useEffect(() => console.log(currentTheme), [currentTheme]);
-
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2" suppressHydrationWarning>
       <button type="button">{currentTheme === 'dark'}</button>
       <ThemeButton
         type="button"
@@ -58,7 +79,7 @@ export function ThemeSelector() {
         <div className="h-0.5 w-full -rotate-45 bg-base-content" />
       </ThemeButton>
 
-      {themes.map((theme) => (
+      {THEMES.map((theme) => (
         <ThemeButton
           key={theme}
           type="button"
