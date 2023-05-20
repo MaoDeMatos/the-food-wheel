@@ -8,7 +8,12 @@ export type ThemesType = (typeof themes)[number] | 'system';
 type IThemeStore = { currentTheme: ThemesType };
 
 const themeStoreKey = 'theme-storage';
-const storedThemeString = localStorage.getItem(themeStoreKey);
+
+let storedThemeString;
+
+if (typeof window !== 'undefined') {
+  storedThemeString = localStorage.getItem(themeStoreKey);
+}
 
 const initialValue = {
   currentTheme: storedThemeString
