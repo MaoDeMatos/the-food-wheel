@@ -6,9 +6,9 @@ body > div:first-of-type {
   @apply overflow-hidden;
 }
 
-html {
+/* html {
   @apply transition-colors duration-500;
-}
+} */
 
 html,
 body,
