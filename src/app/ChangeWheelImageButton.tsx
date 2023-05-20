@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { FileMinus, Image } from 'react-feather';
 import { DropZone, DropZoneProps } from '../components/DropZone';
-import { useDataStoreAsync, setImage } from './utils/DataStore';
+import { useDataStoreAsync, setImage } from '../utils/DataStore';
 
 export function ChangeWheelImage() {
   const { image } = useDataStoreAsync();
