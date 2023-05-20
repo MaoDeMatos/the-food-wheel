@@ -36,6 +36,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## To do
 
-- [ ] Change color themes manually
+- [x] Change color themes manually
 - [ ] Translate (FR/EN) & change language manually
 - [ ] Add options as URL parameters in order to save them
