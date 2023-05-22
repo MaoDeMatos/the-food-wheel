@@ -11,8 +11,8 @@
 !.yarn/sdks
 !.yarn/versions
 # Swap these two if using PnP
-.pnp.*
-#!.yarn/cache
+#.pnp.*
+!.yarn/cache
 
 # testing
 /coverage
