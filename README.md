@@ -16,7 +16,7 @@ The idea comes from [La roue de la bouffe](http://www.larouedelabouffe.fr/), whi
 
 ## Requirements
 
-- Node.js 16.14+
+- Node.js 18.14.2+
 
 ---
 
