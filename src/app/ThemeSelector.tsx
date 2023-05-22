@@ -68,7 +68,6 @@ export function ThemeSelector() {
 
   return (
     <div className="flex gap-2" suppressHydrationWarning>
-      <button type="button">{currentTheme === 'dark'}</button>
       <ThemeButton
         type="button"
         title="Activate system (automatic) color theme"
