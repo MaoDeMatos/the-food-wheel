@@ -51,7 +51,7 @@ export function WheelContainer() {
 
   return (
     <div className="relative flex w-full flex-col gap-8 text-center sm:w-72 md:w-96">
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center overflow-hidden">
         <ArrowDown className="h-12 w-12" />
         <ChangeWheelImage />
         <div
