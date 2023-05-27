@@ -10,10 +10,11 @@ function VerticalDivider() {
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center gap-12 px-4 py-12 sm:gap-24 sm:px-8 sm:py-14">
-      <div className="fixed right-3 top-3 z-10 flex gap-4">
+    <main className="flex flex-col items-center gap-12 p-4 pt-12 sm:gap-24 sm:p-8 sm:pt-14">
+      <div className="fixed right-4 top-4 z-10 flex gap-4">
         <ThemeSelector />
         <VerticalDivider />
+
         <a
           href="https://github.com/MaoDeMatos/the-food-wheel"
           target="_blank"

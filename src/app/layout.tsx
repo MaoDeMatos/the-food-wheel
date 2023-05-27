@@ -30,7 +30,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={work_sans.variable} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${work_sans.variable} m-0 min-h-screen p-0 bg-black`}
+      suppressHydrationWarning
+    >
       {/* <head /> will contain components hydrated by the metadata constant.
        * Find out more at https://beta.nextjs.org/docs/api-reference/metadata */}
       <head>
@@ -48,8 +52,10 @@ export default function RootLayout({
         />
       </head>
 
-      <body>
-        <div>{children}</div>
+      <body className="antialiased min-h-screen p-1.5">
+        <div className="h-[calc(100vh-0.75rem)] overflow-auto rounded-3xl bg-base-100">
+          {children}
+        </div>
       </body>
     </html>
   );
