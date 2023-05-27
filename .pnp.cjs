@@ -42,6 +42,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier-plugin-tailwindcss", "virtual:e01c20bf2abfa16f7c5c7ae3897923d67aa0a191b6ba3fc06c4b1bb0c37b51db75bf011529e2ac075a2c8f5794eb46f3d0cd2e8c38f809553b2678ce04a681f6#npm:0.3.0"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:e01c20bf2abfa16f7c5c7ae3897923d67aa0a191b6ba3fc06c4b1bb0c37b51db75bf011529e2ac075a2c8f5794eb46f3d0cd2e8c38f809553b2678ce04a681f6#npm:18.2.0"],\
+            ["react-dropzone", "virtual:e01c20bf2abfa16f7c5c7ae3897923d67aa0a191b6ba3fc06c4b1bb0c37b51db75bf011529e2ac075a2c8f5794eb46f3d0cd2e8c38f809553b2678ce04a681f6#npm:14.2.3"],\
             ["react-feather", "virtual:e01c20bf2abfa16f7c5c7ae3897923d67aa0a191b6ba3fc06c4b1bb0c37b51db75bf011529e2ac075a2c8f5794eb46f3d0cd2e8c38f809553b2678ce04a681f6#npm:2.0.10"],\
             ["tailwindcss", "npm:3.3.2"],\
             ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=b5f058"],\
@@ -820,6 +821,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/ast-types-flow-npm-0.0.7-7d32a3abf5-a26dcc2182.zip/node_modules/ast-types-flow/",\
           "packageDependencies": [\
             ["ast-types-flow", "npm:0.0.7"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["attr-accept", [\
+        ["npm:2.2.2", {\
+          "packageLocation": "./.yarn/cache/attr-accept-npm-2.2.2-b9cd0d8eac-496f724935.zip/node_modules/attr-accept/",\
+          "packageDependencies": [\
+            ["attr-accept", "npm:2.2.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -2136,6 +2146,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["file-entry-cache", "npm:6.0.1"],\
             ["flat-cache", "npm:3.0.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["file-selector", [\
+        ["npm:0.6.0", {\
+          "packageLocation": "./.yarn/cache/file-selector-npm-0.6.0-04259af1f7-7d051b6e5d.zip/node_modules/file-selector/",\
+          "packageDependencies": [\
+            ["file-selector", "npm:0.6.0"],\
+            ["tslib", "npm:2.5.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4221,6 +4241,31 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["react-dropzone", [\
+        ["npm:14.2.3", {\
+          "packageLocation": "./.yarn/cache/react-dropzone-npm-14.2.3-b5d5b11ea4-174b744d5c.zip/node_modules/react-dropzone/",\
+          "packageDependencies": [\
+            ["react-dropzone", "npm:14.2.3"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:e01c20bf2abfa16f7c5c7ae3897923d67aa0a191b6ba3fc06c4b1bb0c37b51db75bf011529e2ac075a2c8f5794eb46f3d0cd2e8c38f809553b2678ce04a681f6#npm:14.2.3", {\
+          "packageLocation": "./.yarn/__virtual__/react-dropzone-virtual-cdbd6a057e/0/cache/react-dropzone-npm-14.2.3-b5d5b11ea4-174b744d5c.zip/node_modules/react-dropzone/",\
+          "packageDependencies": [\
+            ["react-dropzone", "virtual:e01c20bf2abfa16f7c5c7ae3897923d67aa0a191b6ba3fc06c4b1bb0c37b51db75bf011529e2ac075a2c8f5794eb46f3d0cd2e8c38f809553b2678ce04a681f6#npm:14.2.3"],\
+            ["@types/react", "npm:18.2.6"],\
+            ["attr-accept", "npm:2.2.2"],\
+            ["file-selector", "npm:0.6.0"],\
+            ["prop-types", "npm:15.8.1"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["react-feather", [\
         ["npm:2.0.10", {\
           "packageLocation": "./.yarn/cache/react-feather-npm-2.0.10-b035d9c822-75acb29ee4.zip/node_modules/react-feather/",\
@@ -4867,6 +4912,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier-plugin-tailwindcss", "virtual:e01c20bf2abfa16f7c5c7ae3897923d67aa0a191b6ba3fc06c4b1bb0c37b51db75bf011529e2ac075a2c8f5794eb46f3d0cd2e8c38f809553b2678ce04a681f6#npm:0.3.0"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:e01c20bf2abfa16f7c5c7ae3897923d67aa0a191b6ba3fc06c4b1bb0c37b51db75bf011529e2ac075a2c8f5794eb46f3d0cd2e8c38f809553b2678ce04a681f6#npm:18.2.0"],\
+            ["react-dropzone", "virtual:e01c20bf2abfa16f7c5c7ae3897923d67aa0a191b6ba3fc06c4b1bb0c37b51db75bf011529e2ac075a2c8f5794eb46f3d0cd2e8c38f809553b2678ce04a681f6#npm:14.2.3"],\
             ["react-feather", "virtual:e01c20bf2abfa16f7c5c7ae3897923d67aa0a191b6ba3fc06c4b1bb0c37b51db75bf011529e2ac075a2c8f5794eb46f3d0cd2e8c38f809553b2678ce04a681f6#npm:2.0.10"],\
             ["tailwindcss", "npm:3.3.2"],\
             ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=b5f058"],\
