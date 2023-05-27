@@ -2,8 +2,7 @@ import { Metadata } from 'next';
 import { Work_Sans } from 'next/font/google';
 // import Script from 'next/script';
 
-// import '../build/styles.css'; // Used when Turbopack is enabled
-import './globals.css'; // Used when Turbopack is disabled
+import './globals.css';
 import { GitHub } from 'react-feather';
 import { ThemeSelector } from './ThemeSelector';
 
