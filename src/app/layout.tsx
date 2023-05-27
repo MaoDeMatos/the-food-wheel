@@ -4,6 +4,8 @@ import { Work_Sans } from 'next/font/google';
 
 // import '../build/styles.css'; // Used when Turbopack is enabled
 import './globals.css'; // Used when Turbopack is disabled
+import { GitHub } from 'react-feather';
+import { ThemeSelector } from './ThemeSelector';
 
 const work_sans = Work_Sans({
   subsets: ['latin'],
@@ -53,10 +55,29 @@ export default function RootLayout({
       </head>
 
       <body className="antialiased h-full p-1.5">
+        <div className="fixed right-4 top-4 z-10 flex gap-4">
+          <ThemeSelector />
+          <VerticalDivider />
+
+          <a
+            href="https://github.com/MaoDeMatos/the-food-wheel"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-sm btn-circle btn flex items-center justify-center p-1 ring-0 ring-transparent ring-offset-2 ring-offset-base-100"
+            title="Check out the code here !"
+          >
+            <GitHub />
+          </a>
+        </div>
+
         <div className="h-full overflow-auto rounded-3xl bg-base-100">
           {children}
         </div>
       </body>
     </html>
   );
+}
+
+function VerticalDivider() {
+  return <div className="h-8 w-px bg-neutral-content" />;
 }
