@@ -53,24 +53,29 @@ export default function RootLayout({
         />
       </head>
 
-      <body className="antialiased h-full p-1.5">
-        <div className="fixed right-4 top-4 z-10 flex gap-4">
-          <ThemeSelector />
-          <VerticalDivider />
+      <body className="antialiased h-full">
+        {/* App wrapper, to ensure nothing is injected in the "overlay" */}
+        <div className="container mx-auto flex flex-col gap-2 h-full p-2">
+          {/* Main content will live here */}
+          <div className="h-full overflow-auto rounded-xl bg-base-100">
+            {children}
+          </div>
 
-          <a
-            href="https://github.com/MaoDeMatos/the-food-wheel"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-sm btn-circle btn flex items-center justify-center p-1 ring-0 ring-transparent ring-offset-2 ring-offset-base-100"
-            title="Check out the code here !"
-          >
-            <GitHub />
-          </a>
-        </div>
+          {/* Footer */}
+          <div className="z-10 flex justify-end gap-4 bg-base-100 p-2 px-4 rounded-xl sm:self-end">
+            <ThemeSelector />
+            <VerticalDivider />
 
-        <div className="h-full overflow-auto rounded-3xl bg-base-100">
-          {children}
+            <a
+              href="https://github.com/MaoDeMatos/the-food-wheel"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-sm btn-circle btn-outline btn flex items-center justify-center p-1"
+              title="Check out the code here !"
+            >
+              <GitHub />
+            </a>
+          </div>
         </div>
       </body>
     </html>

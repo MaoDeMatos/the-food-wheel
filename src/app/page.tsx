@@ -4,7 +4,7 @@ import { WheelContainer } from './_wheel/WheelContainer';
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center gap-12 p-4 pt-12 sm:gap-24 sm:p-8 sm:pt-14">
+    <main className="flex flex-col items-center gap-12 p-4 sm:gap-24 sm:p-8">
       <div>
         <h1 className="bg-gradient-to-r from-primary to-accent bg-clip-text text-center text-4xl font-extrabold !leading-tight text-transparent sm:text-6xl">
           The Food Wheel !
