@@ -3,7 +3,16 @@
 # dependencies
 /node_modules
 /.pnp
-.pnp.js
+
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+# Swap these two if using PnP
+#.pnp.*
+!.yarn/cache
 
 # testing
 /coverage
@@ -18,7 +27,7 @@
 # misc
 .DS_Store
 *.pem
-.vscode
+# .vscode
 
 # debug
 npm-debug.log*

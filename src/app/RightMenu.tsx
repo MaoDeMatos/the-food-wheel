@@ -35,35 +35,33 @@ function SpinTheWheelButton() {
     isslowdownTimesInRange &&
     thereAreEnoughOptions;
 
-  function handleErrors() {
-    console.error('One or mutiple errors occured :');
+  // function handleErrors() {
+  //   console.error('One or mutiple errors occured :');
 
-    // const errors: string[] = [];
-
-    if (!isInitialSpeedInRange) {
-      console.error(
-        `"initialSpeed" is not in range. initialSpeed: ${initialSpeed}`
-      );
-    }
-    if (!isslowdownTimesInRange) {
-      console.error(
-        `"slowdownTime" is not in range. slowdownTime: ${slowdownTime}`
-      );
-    }
-    if (!thereAreEnoughOptions) {
-      console.error(
-        `Error with options count. Options count ${filteredOptions.length}`
-      );
-    }
-  }
+  //   if (!isInitialSpeedInRange) {
+  //     console.error(
+  //       `"initialSpeed" is not in range. initialSpeed: ${initialSpeed}`
+  //     );
+  //   }
+  //   if (!isslowdownTimesInRange) {
+  //     console.error(
+  //       `"slowdownTime" is not in range. slowdownTime: ${slowdownTime}`
+  //     );
+  //   }
+  //   if (!thereAreEnoughOptions) {
+  //     console.error(
+  //       `Error with options count. Options count ${filteredOptions.length}`
+  //     );
+  //   }
+  // }
 
   return (
     <button
       className="btn-accent btn-circle btn w-full gap-2 shadow-md transition disabled:pointer-events-auto disabled:cursor-not-allowed disabled:shadow-sm"
       type="button"
-      onClick={
-        canSpinTheWheel ? () => changeWheelStatus('spinning') : handleErrors
-      }
+      onClick={() => {
+        canSpinTheWheel ? changeWheelStatus('spinning') : null; // handleErrors
+      }}
       disabled={!canSpinTheWheel}
     >
       {wheelStatus === 'ready' ? (

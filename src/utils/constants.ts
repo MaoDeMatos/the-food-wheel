@@ -32,6 +32,7 @@ export const BADGES_COLORS = [
   'bg-emerald-400',
 ];
 
+/** Not parsed by Tailwind */
 // const COLORS = [
 //   'rose-400',
 //   'teal-500',
