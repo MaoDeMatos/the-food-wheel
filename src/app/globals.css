@@ -5,3 +5,27 @@
 ::selection {
   @apply bg-secondary text-secondary-content;
 }
+
+/* Dunno if I'll keep this */
+/* Scrollbars start */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--nc)) hsl(var(--n));
+}
+
+*::-webkit-scrollbar {
+  width: 0.75rem;
+}
+
+*::-webkit-scrollbar-track {
+  background: hsl(var(--n));
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--nc));
+  border-radius: 6px;
+  border: 3px solid hsl(var(--n));
+}
+
+/* Scrollbars end */
