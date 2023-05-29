@@ -54,11 +54,15 @@ export default function RootLayout({
       </head>
 
       <body className="antialiased h-full">
-        {/* App wrapper, to ensure nothing is injected in the "overlay" */}
-        <div className="container mx-auto flex flex-col gap-2 h-full p-2">
-          {/* Main content will live here */}
-          <div className="h-full overflow-auto rounded-xl bg-base-100">
-            {children}
+        {/* App wrapper, to ensure nothing is injected in the "overlay", by Next.js for example */}
+        <div
+          id="app"
+          className="container mx-auto flex flex-col gap-2 h-full p-2"
+        >
+          {/* Main content */}
+          <div className="h-full overflow-hidden rounded-xl bg-base-100">
+            {/* Children <div/> just to prevent the scrollbar overflowing the rounded container */}
+            <div className="h-full overflow-auto">{children}</div>
           </div>
 
           {/* Footer */}
