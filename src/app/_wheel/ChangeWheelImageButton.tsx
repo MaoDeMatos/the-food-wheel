@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { FileMinus, FilePlus } from 'react-feather';
-import { useDataStoreAsync, setImage } from '@/utils/DataStore';
+
+import { setImage, useDataStoreAsync } from '@/utils/DataStore';
+
 import { WheelImageModal } from './WheelImageModal';
 
 export function ChangeWheelImage() {

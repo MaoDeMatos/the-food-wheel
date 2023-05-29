@@ -2,14 +2,14 @@
 
 import { ButtonHTMLAttributes, useEffect, useState } from 'react';
 
+import { classNames } from '@/utils';
 import {
+  MEDIA,
   THEMES,
+  THEME_STORAGE_KEY,
   ThemesType,
   getSystemTheme,
-  THEME_STORAGE_KEY,
-  MEDIA,
 } from '@/utils/ColorTheme';
-import { classNames } from '@/utils';
 
 interface ThemeButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   themeClasses: string;

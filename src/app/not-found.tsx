@@ -1,5 +1,6 @@
-import Marquee from '@/components/Marquee';
 import Link from 'next/link';
+
+import Marquee from '@/components/Marquee';
 
 export default function NotFound() {
   return (

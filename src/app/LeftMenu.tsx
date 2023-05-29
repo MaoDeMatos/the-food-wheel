@@ -1,14 +1,15 @@
 'use client';
 
 import { Plus } from 'react-feather';
-import { CustomSliderComponent } from '../components/Sliders';
-import { INITIAL_SPEED, SLOWDOWN_TIME } from '../utils/constants';
+
+import { CustomSliderComponent } from '@/components/Sliders';
 import {
   optionsActions,
   setInitialSpeed,
   setslowdownTime,
   useDataStoreSync,
-} from '../utils/DataStore';
+} from '@/utils/DataStore';
+import { INITIAL_SPEED, SLOWDOWN_TIME } from '@/utils/constants';
 
 export function LeftMenu() {
   return (

@@ -1,19 +1,20 @@
 'use client';
 
 import React, {
-  Fragment,
-  useEffect,
-  useState,
-  useRef,
-  useCallback,
-  useMemo,
-  ReactNode,
-  FC,
-  forwardRef,
   Children,
+  FC,
+  Fragment,
   MutableRefObject,
+  ReactNode,
   RefAttributes,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
 } from 'react';
+
 import './Marquee.css';
 
 type MarqueeProps = {

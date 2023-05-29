@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 import { Work_Sans } from 'next/font/google';
-// import Script from 'next/script';
+import { GitHub } from 'react-feather';
+
+import { ThemeSelector } from '@/components/ThemeSelector';
 
 import './globals.css';
-import { GitHub } from 'react-feather';
-import { ThemeSelector } from './ThemeSelector';
 
 const work_sans = Work_Sans({
   subsets: ['latin'],
