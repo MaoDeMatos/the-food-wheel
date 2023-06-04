@@ -1,6 +1,6 @@
 'use client';
 
-import { FastForward, Play } from 'react-feather';
+import { Play, Rewind } from 'lucide-react';
 
 import { changeWheelStatus, useDataStoreAsync } from '@/utils/DataStore';
 import { BADGES_COLORS, INITIAL_SPEED, SLOWDOWN_TIME } from '@/utils/constants';
@@ -68,7 +68,7 @@ function SpinTheWheelButton() {
         </>
       ) : (
         <>
-          <FastForward className="rotate-180" />
+          <Rewind />
           Reset
         </>
       )}

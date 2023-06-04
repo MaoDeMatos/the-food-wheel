@@ -1,5 +1,5 @@
+import { FileMinus, FilePlus } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
-import { FileMinus, FilePlus } from 'react-feather';
 
 import { setImage, useDataStoreAsync } from '@/utils/DataStore';
 

@@ -1,7 +1,7 @@
 'use client';
 
+import { ArrowDown } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { ArrowDown } from 'react-feather';
 
 import { changeWheelStatus, useDataStoreAsync } from '@/utils/DataStore';
 

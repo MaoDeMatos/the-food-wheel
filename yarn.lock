@@ -2869,6 +2869,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lucide-react@npm:^0.234.0":
+  version: 0.234.0
+  resolution: "lucide-react@npm:0.234.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0
+  checksum: 47a300240752ce40e0916447784b62c55e171e6ffd8e596df17691a0986173d4deb81eb0c7940d5fce9e56360b6fefb83ca51398b00295d03fe49f60fcc409c5
+  languageName: node
+  linkType: hard
+
 "make-fetch-happen@npm:^10.0.3":
   version: 10.2.1
   resolution: "make-fetch-happen@npm:10.2.1"
@@ -3665,7 +3674,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -3719,17 +3728,6 @@ __metadata:
   peerDependencies:
     react: ">= 16.8 || 18.0.0"
   checksum: 174b744d5ca898cf3d84ec1aeb6cef5211c446697e45dc8ece8287a03d291f8d07253206d5a1247ef156fd385d65e7de666d4d5c2986020b8543b8f2434e8b40
-  languageName: node
-  linkType: hard
-
-"react-feather@npm:^2.0.10":
-  version: 2.0.10
-  resolution: "react-feather@npm:2.0.10"
-  dependencies:
-    prop-types: ^15.7.2
-  peerDependencies:
-    react: ">=16.8.6"
-  checksum: 75acb29ee4352cd4e2a509ca81e15f3b553439c069dac19035503d53c0fe2b6133d65f5e32ccdb61ed1514cfda1b615e34de6a9640973a7bda283b7eb98850a1
   languageName: node
   linkType: hard
 
@@ -4333,6 +4331,7 @@ __metadata:
     eslint: 8.41.0
     eslint-config-next: 13.4.3
     eslint-plugin-valtio: ^0.6.2
+    lucide-react: ^0.234.0
     next: ^13.4.3
     postcss: ^8.4.21
     prettier: ^2.8.2
@@ -4340,7 +4339,6 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     react-dropzone: ^14.2.3
-    react-feather: ^2.0.10
     tailwindcss: ^3.2.4
     typescript: 5.0.4
     valtio: ^1.10.3

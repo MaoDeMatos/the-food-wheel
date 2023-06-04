@@ -1,6 +1,6 @@
+import { Github } from 'lucide-react';
 import { Metadata } from 'next';
 import { Work_Sans } from 'next/font/google';
-import { GitHub } from 'react-feather';
 
 import { ThemeSelector } from '@/components/ThemeSelector';
 
@@ -77,7 +77,7 @@ export default function RootLayout({
               className="btn-outline btn-sm btn-circle btn flex items-center justify-center p-1"
               title="Check out the code here !"
             >
-              <GitHub />
+              <Github />
             </a>
           </div>
         </div>

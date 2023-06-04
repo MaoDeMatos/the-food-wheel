@@ -1,6 +1,6 @@
+import { Image as ImageIcon } from 'lucide-react';
 import { createPortal } from 'react-dom';
 import { useDropzone } from 'react-dropzone';
-import { Image as ImageIcon } from 'react-feather';
 
 import { classNames } from '@/utils';
 import { setImage } from '@/utils/DataStore';

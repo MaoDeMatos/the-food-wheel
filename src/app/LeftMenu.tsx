@@ -1,6 +1,6 @@
 'use client';
 
-import { Plus } from 'react-feather';
+import { Plus } from 'lucide-react';
 
 import { CustomSliderComponent } from '@/components/Sliders';
 import {
