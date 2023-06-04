@@ -55,7 +55,7 @@ export function WheelImageModal({
             closeModal();
           }}
         >
-          <div className="modal-box relative flex flex-col gap-2 bg-neutral text-neutral-content items-center">
+          <div className="modal-box relative flex flex-col items-center gap-2 bg-neutral text-neutral-content">
             <h3 className="text-lg font-bold">Change wheel image here</h3>
 
             <button
@@ -75,15 +75,15 @@ export function WheelImageModal({
                 ),
               })}
             >
-              <div className="text-center flex flex-col justify-center items-center rounded-lg border-2 border-dashed border-base-300 px-6 py-10 gap-4">
+              <div className="flex flex-col items-center justify-center gap-4 rounded-lg border-2 border-dashed border-base-300 px-6 py-10 text-center">
                 <ImageIcon
                   className="mx-auto h-12 w-12 text-neutral-content"
                   aria-hidden="true"
                 />
-                <div className="flex flex-wrap justify-center text-sm leading-6 gap-1 text-neutral-content">
+                <div className="flex flex-wrap justify-center gap-1 text-sm leading-6 text-neutral-content">
                   <label
                     htmlFor="file-upload"
-                    className="btn btn-outline btn-xs"
+                    className="btn-outline btn-xs btn"
                   >
                     Upload an image
                   </label>
@@ -98,7 +98,7 @@ export function WheelImageModal({
                 </div>
 
                 {error && (
-                  <p className="text-xs leading-5 text-neutral-content italic">
+                  <p className="text-xs italic leading-5 text-neutral-content">
                     {error.message}
                   </p>
                 )}

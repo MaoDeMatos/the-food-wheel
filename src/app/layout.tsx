@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${work_sans.variable} m-0 h-full p-0 bg-black`}
+      className={`${work_sans.variable} m-0 h-full bg-black p-0`}
       suppressHydrationWarning
     >
       {/* <head /> will contain components hydrated by the metadata constant.
@@ -53,11 +53,11 @@ export default function RootLayout({
         />
       </head>
 
-      <body className="antialiased h-full">
+      <body className="h-full antialiased">
         {/* App wrapper, to ensure nothing is injected in the "overlay", by Next.js for example */}
         <div
           id="app"
-          className="container mx-auto flex flex-col gap-2 h-full p-2"
+          className="container mx-auto flex h-full flex-col gap-2 p-2"
         >
           {/* Main content */}
           <div className="h-full overflow-hidden rounded-xl bg-base-100">
@@ -66,7 +66,7 @@ export default function RootLayout({
           </div>
 
           {/* Footer */}
-          <div className="z-10 flex justify-end gap-4 bg-base-100 p-2 px-4 rounded-xl sm:self-end">
+          <div className="z-10 flex justify-end gap-4 rounded-xl bg-base-100 p-2 px-4 sm:self-end">
             <ThemeSelector />
             <VerticalDivider />
 
@@ -74,7 +74,7 @@ export default function RootLayout({
               href="https://github.com/MaoDeMatos/the-food-wheel"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-sm btn-circle btn-outline btn flex items-center justify-center p-1"
+              className="btn-outline btn-sm btn-circle btn flex items-center justify-center p-1"
               title="Check out the code here !"
             >
               <GitHub />
