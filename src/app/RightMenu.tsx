@@ -1,12 +1,9 @@
 'use client';
 
-import { FastForward, Play } from 'react-feather';
-import {
-  BADGES_COLORS,
-  INITIAL_SPEED,
-  SLOWDOWN_TIME,
-} from '../utils/constants';
-import { changeWheelStatus, useDataStoreAsync } from '../utils/DataStore';
+import { Play, Rewind } from 'lucide-react';
+
+import { changeWheelStatus, useDataStoreAsync } from '@/utils/DataStore';
+import { BADGES_COLORS, INITIAL_SPEED, SLOWDOWN_TIME } from '@/utils/constants';
 
 export function RightMenu() {
   return (
@@ -71,7 +68,7 @@ function SpinTheWheelButton() {
         </>
       ) : (
         <>
-          <FastForward className="rotate-180" />
+          <Rewind />
           Reset
         </>
       )}

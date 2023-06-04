@@ -1,9 +1,10 @@
-import Marquee from '@/components/Marquee';
 import Link from 'next/link';
+
+import Marquee from '@/components/Marquee';
 
 export default function NotFound() {
   return (
-    <main className="flex h-full flex-col items-center justify-center py-8 font-bold sm:py-12 text-6xl leading-[inherit]">
+    <main className="flex h-full flex-col items-center justify-center py-8 text-6xl font-bold leading-[inherit] sm:py-12">
       <Marquee autoFill speed={95} className="overflow-visible">
         <h2 className="px-8 text-primary">Error 404</h2>
       </Marquee>

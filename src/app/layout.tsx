@@ -1,10 +1,10 @@
+import { Github } from 'lucide-react';
 import { Metadata } from 'next';
 import { Work_Sans } from 'next/font/google';
-// import Script from 'next/script';
+
+import { ThemeSelector } from '@/components/ThemeSelector';
 
 import './globals.css';
-import { GitHub } from 'react-feather';
-import { ThemeSelector } from './ThemeSelector';
 
 const work_sans = Work_Sans({
   subsets: ['latin'],
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
   },
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: '#282a36' },
+    { media: '(prefers-color-scheme: light)', color: '#e2e8f0' },
+    { media: '(prefers-color-scheme: dark)', color: '#121217' },
   ],
 };
 
@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${work_sans.variable} m-0 h-full p-0 bg-black`}
+      className={`${work_sans.variable} m-0 h-full p-0 data-theme-dark:bg-[#121217] data-theme-light:bg-slate-200`}
       suppressHydrationWarning
     >
       {/* <head /> will contain components hydrated by the metadata constant.
@@ -53,11 +53,11 @@ export default function RootLayout({
         />
       </head>
 
-      <body className="antialiased h-full">
+      <body className="h-full antialiased">
         {/* App wrapper, to ensure nothing is injected in the "overlay", by Next.js for example */}
         <div
           id="app"
-          className="container mx-auto flex flex-col gap-2 h-full p-2"
+          className="container mx-auto flex h-full flex-col gap-2 p-2"
         >
           {/* Main content */}
           <div className="h-full overflow-hidden rounded-xl bg-base-100">
@@ -66,7 +66,7 @@ export default function RootLayout({
           </div>
 
           {/* Footer */}
-          <div className="z-10 flex justify-end gap-4 bg-base-100 p-2 px-4 rounded-xl sm:self-end">
+          <div className="z-10 flex justify-end gap-4 rounded-xl bg-base-100 p-2 px-4 sm:self-end">
             <ThemeSelector />
             <VerticalDivider />
 
@@ -74,10 +74,10 @@ export default function RootLayout({
               href="https://github.com/MaoDeMatos/the-food-wheel"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-sm btn-circle btn-outline btn flex items-center justify-center p-1"
+              className="btn-outline btn-sm btn-circle btn flex items-center justify-center p-1"
               title="Check out the code here !"
             >
-              <GitHub />
+              <Github />
             </a>
           </div>
         </div>

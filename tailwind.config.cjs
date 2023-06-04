@@ -5,6 +5,10 @@ module.exports = {
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
     extend: {
+      data: {
+        'theme-dark': 'theme="dark"',
+        'theme-light': 'theme="light"',
+      },
       fontFamily: {
         sans: ['var(--font-work-sans)', ...defaultTheme.fontFamily.sans],
       },

@@ -10,9 +10,11 @@
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-# Swap these two if using PnP
-#.pnp.*
-!.yarn/cache
+
+# Uncomment if not using PnP
+.pnp.*
+# Uncomment if using PnP
+# !.yarn/cache
 
 # testing
 /coverage
@@ -27,7 +29,7 @@
 # misc
 .DS_Store
 *.pem
-# .vscode
+.vscode
 
 # debug
 npm-debug.log*

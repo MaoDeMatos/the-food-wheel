@@ -1,6 +1,7 @@
 import { ChangeEvent, useMemo } from 'react';
-import { useDataStoreAsync } from '../utils/DataStore';
-import { slugify } from '../utils';
+
+import { slugify } from '@/utils';
+import { useDataStoreAsync } from '@/utils/DataStore';
 
 type CustomSliderComponentProps = {
   label: string;

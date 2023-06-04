@@ -1,14 +1,15 @@
 'use client';
 
-import { Plus } from 'react-feather';
-import { CustomSliderComponent } from '../components/Sliders';
-import { INITIAL_SPEED, SLOWDOWN_TIME } from '../utils/constants';
+import { Plus } from 'lucide-react';
+
+import { CustomSliderComponent } from '@/components/Sliders';
 import {
   optionsActions,
   setInitialSpeed,
   setslowdownTime,
   useDataStoreSync,
-} from '../utils/DataStore';
+} from '@/utils/DataStore';
+import { INITIAL_SPEED, SLOWDOWN_TIME } from '@/utils/constants';
 
 export function LeftMenu() {
   return (
@@ -66,7 +67,7 @@ function LeftMenuOptions() {
 
       {options.map((opt, idx) => (
         <div key={idx} className="relative">
-          <span className="pointer-events-none absolute top-[52%] left-3 -translate-y-1/2 select-none">
+          <span className="pointer-events-none absolute left-3 top-[52%] -translate-y-1/2 select-none">
             {idx + 1}.
           </span>
           <input
@@ -81,7 +82,7 @@ function LeftMenuOptions() {
           />
           <button
             type="button"
-            className="absolute top-[52%] right-1.5 z-[1] flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full p-1 ring-current transition hover:ring-2 disabled:cursor-not-allowed disabled:hover:ring-0"
+            className="absolute right-1.5 top-[52%] z-[1] flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full p-1 ring-current transition hover:ring-2 disabled:cursor-not-allowed disabled:hover:ring-0"
             onClick={() => optionsActions.removeOptionById(idx)}
             disabled={wheelStatus === 'spinning'}
           >
