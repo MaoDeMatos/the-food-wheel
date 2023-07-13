@@ -73,7 +73,7 @@ function LeftMenuOptions() {
           <input
             type="text"
             placeholder="Pizza ?"
-            className="input-bordered input input-md w-full pl-7 pr-8"
+            className="input input-bordered input-md w-full pl-7 pr-8"
             value={opt}
             onChange={(e) =>
               optionsActions.updateOptionValue(idx, e.target.value)
@@ -93,7 +93,7 @@ function LeftMenuOptions() {
 
       {options.length < MAX_OPTIONS_NUMBER && (
         <button
-          className="btn-primary btn w-full gap-2"
+          className="btn btn-primary w-full gap-2"
           type="button"
           onClick={() => optionsActions.addOption()}
         >

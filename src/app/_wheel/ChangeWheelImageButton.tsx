@@ -28,7 +28,7 @@ export function ChangeWheelImage() {
     <>
       <button
         type="button"
-        className="btn-primary btn-circle btn absolute -top-0 right-0 z-[1] flex p-1"
+        className="btn btn-circle btn-primary absolute -top-0 right-0 z-[1] flex p-1"
         title={hasImage ? 'Remove image' : 'Add image'}
         onClick={() => (hasImage ? setImage(null) : setIsModalOpen(true))}
       >

@@ -66,7 +66,7 @@ export default function RootLayout({
           </div>
 
           {/* Footer */}
-          <div className="z-10 flex justify-end gap-4 rounded-xl bg-base-100 p-2 px-4 sm:self-end">
+          <div className="z-10 flex justify-end gap-4 p-2 px-4 sm:self-end">
             <ThemeSelector />
             <VerticalDivider />
 
@@ -74,7 +74,7 @@ export default function RootLayout({
               href="https://github.com/MaoDeMatos/the-food-wheel"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-outline btn-sm btn-circle btn flex items-center justify-center p-1"
+              className="btn btn-circle btn-outline btn-sm flex items-center justify-center p-1"
               title="Check out the code here !"
             >
               <Github />

@@ -60,7 +60,7 @@ export function WheelImageModal({
 
             <button
               type="button"
-              className="btn-neutral btn-sm btn-circle btn absolute right-3 top-3"
+              className="btn btn-circle btn-neutral btn-sm absolute right-3 top-3"
               title="Close"
               onClick={closeModal}
             >
@@ -83,7 +83,7 @@ export function WheelImageModal({
                 <div className="flex flex-wrap justify-center gap-1 text-sm leading-6 text-neutral-content">
                   <label
                     htmlFor="file-upload"
-                    className="btn-neutral btn-outline btn-xs btn"
+                    className="btn btn-neutral btn-outline btn-xs"
                   >
                     Upload an image
                   </label>

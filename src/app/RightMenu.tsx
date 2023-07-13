@@ -54,7 +54,7 @@ function SpinTheWheelButton() {
 
   return (
     <button
-      className="btn-accent btn-circle btn w-full gap-2 shadow-md transition disabled:pointer-events-auto disabled:cursor-not-allowed disabled:shadow-sm"
+      className="btn btn-circle btn-accent w-full gap-2 shadow-md transition disabled:pointer-events-auto disabled:cursor-not-allowed disabled:shadow-sm"
       type="button"
       onClick={() => {
         canSpinTheWheel ? changeWheelStatus('spinning') : null; // handleErrors
