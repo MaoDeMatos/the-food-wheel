@@ -11,21 +11,24 @@
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: hsl(var(--nc)) hsl(var(--n));
+  /* scrollbar-color: hsl(var(--nc)) hsl(var(--n)); */
+  scrollbar-color: hsl(var(--nc)) transparent;
 }
 
 *::-webkit-scrollbar {
-  width: 0.75rem;
+  width: 0.4rem;
 }
 
+/*
 *::-webkit-scrollbar-track {
   background: hsl(var(--n));
 }
+*/
 
 *::-webkit-scrollbar-thumb {
   background-color: hsl(var(--nc));
-  border-radius: 6px;
-  border: 3px solid hsl(var(--n));
+  border-radius: 0.25rem;
+  /* border: 3px solid hsl(var(--n)); */
 }
 
 /* Scrollbars end */
