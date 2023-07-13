@@ -5,6 +5,7 @@ module.exports = {
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
     extend: {
+      colors: { 'main-bg': 'var(--main-bg)' },
       data: {
         'theme-dark': 'theme="dark"',
         'theme-light': 'theme="light"',
@@ -28,6 +29,7 @@ module.exports = {
           'base-100': '#ffffff',
           'base-200': '#f9fafb',
           'base-300': '#d1d5db',
+          '--main-bg': '#e2e8f0',
         },
       },
       {
@@ -43,6 +45,7 @@ module.exports = {
           success: '#50fa7b',
           warning: '#f1fa8c',
           error: '#ff5555',
+          '--main-bg': '#121217',
         },
       },
     ],

@@ -12,16 +12,16 @@ import {
 } from '@/utils/ColorTheme';
 
 interface ThemeButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  themeClasses: string;
+  themeClasses?: string;
   active: boolean;
 }
 
 const ThemeButton = ({ active, themeClasses, ...props }: ThemeButtonProps) => (
   <button
     className={classNames(
-      `h-8 w-8 rounded-full border border-base-content ring-0 ring-transparent ring-offset-2 ring-offset-base-100 transition-all [&.active]:ring-2 [&.active]:ring-secondary`,
+      `h-8 w-8 rounded-full border border-base-content ring-0 ring-transparent ring-offset-2 ring-offset-main-bg transition-all [&.active]:ring-2 [&.active]:ring-secondary`,
       active ? 'active' : '',
-      themeClasses
+      themeClasses ?? ''
     )}
     {...props}
   />
@@ -72,7 +72,6 @@ export function ThemeSelector() {
         type="button"
         title="Activate system (automatic) color theme"
         active={currentTheme === 'system'}
-        themeClasses="bg-base-100"
         onClick={() => changeTheme('system')}
       >
         <div className="h-0.5 w-full -rotate-45 bg-base-content" />

@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${work_sans.variable} m-0 h-full p-0 data-theme-dark:bg-[#121217] data-theme-light:bg-slate-200`}
+      className={`${work_sans.variable} m-0 h-full bg-main-bg p-0`}
       suppressHydrationWarning
     >
       {/* <head /> will contain components hydrated by the metadata constant.
