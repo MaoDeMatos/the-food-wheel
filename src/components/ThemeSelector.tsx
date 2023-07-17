@@ -19,7 +19,7 @@ interface ThemeButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const ThemeButton = ({ active, themeClasses, ...props }: ThemeButtonProps) => (
   <button
     className={classNames(
-      `h-8 w-8 rounded-full border border-base-content ring-0 ring-transparent ring-offset-2 ring-offset-main-bg transition-all [&.active]:ring-2 [&.active]:ring-secondary`,
+      `h-8 w-8 rounded-full border border-base-content ring-0 ring-transparent ring-offset-2 ring-offset-main-bg transition-all [&.active]:ring-2 [&.active]:ring-primary`,
       active ? 'active' : '',
       themeClasses ?? ''
     )}
