@@ -56,7 +56,7 @@ export function WheelImageModal({
           }}
         >
           <div className="modal-box relative flex flex-col items-center gap-2 bg-neutral text-neutral-content">
-            <h3 className="text-lg font-bold">Change wheel image here</h3>
+            <h1 className="text-lg font-bold">Change wheel image here</h1>
 
             <button
               type="button"

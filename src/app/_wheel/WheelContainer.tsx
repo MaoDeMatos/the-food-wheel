@@ -63,7 +63,7 @@ export function WheelContainer() {
               localDuration ? localDuration : slowdownTime
             }s`,
           }}
-          className="aspect-square w-full items-center justify-center rounded-full bg-neutral text-neutral-content transition-all ease-out"
+          className="aspect-square w-full items-center justify-center rounded-full bg-neutral text-neutral-content transition-transform ease-out"
         >
           {image ? <ImageWheel /> : <SvgWheel />}
         </div>
