@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import { Github } from 'lucide-react';
 import { Metadata } from 'next';
 import { Work_Sans } from 'next/font/google';
@@ -39,17 +40,12 @@ export default function RootLayout({
       {/* <head /> will contain components hydrated by the metadata constant.
        * Find out more at https://beta.nextjs.org/docs/api-reference/metadata */}
       <head>
-        {/* TODO: <Script /> does NOT work yet, use a better method when available */}
-        {/* <Script
-          id="init-theme"
-          src="/scripts/initTheme.min.js"
-          strategy="beforeInteractive"
-        /> */}
+        {/* FIXME: <Script /> does NOT work yet, use a better method then this <script> when available */}
         <script
           id="init-theme"
           type="text/javascript"
           src="/scripts/initTheme.min.js"
-          async
+          // async
         />
       </head>
 
@@ -60,7 +56,7 @@ export default function RootLayout({
           className="container mx-auto flex h-full flex-col gap-2 p-2"
         >
           {/* Main content */}
-          <div className="h-full overflow-hidden rounded-xl bg-base-100">
+          <div className="h-full overflow-hidden rounded-xl bg-base-100 shadow-[inset_0_0_0.5rem_0_hsl(0deg_0%_0%_/_12%)]">
             {/* Children <div/> just to prevent the scrollbar overflowing the rounded container */}
             <div className="h-full overflow-auto">{children}</div>
           </div>
