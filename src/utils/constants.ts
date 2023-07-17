@@ -9,41 +9,25 @@ export const SLOWDOWN_TIME = {
 };
 
 export const SVG_COLORS = [
-  'stroke-rose-400',
+  'stroke-[#8C2A3C]',
   'stroke-teal-500',
-  'stroke-orange-600',
-  'stroke-purple-400',
+  'stroke-amber-600',
+  'stroke-rose-700',
+  'stroke-cyan-500',
   'stroke-lime-600',
-  'stroke-sky-600',
-  'stroke-red-600',
-  'stroke-stone-600',
-  'stroke-emerald-400',
+  'stroke-[#46328C]',
+  'stroke-slate-600',
+  'stroke-[#F2C2CF]',
 ];
 
 export const BADGES_COLORS = [
-  'bg-rose-400',
+  'bg-[#8C2A3C]',
   'bg-teal-500',
-  'bg-orange-600',
-  'bg-purple-400',
+  'bg-amber-600',
+  'bg-rose-700',
+  'bg-cyan-500',
   'bg-lime-600',
-  'bg-sky-600',
-  'bg-red-600',
-  'bg-stone-600',
-  'bg-emerald-400',
+  'bg-[#46328C]',
+  'bg-slate-600',
+  'bg-[#F2C2CF]',
 ];
-
-/** Not parsed by Tailwind */
-// const COLORS = [
-//   'rose-400',
-//   'teal-500',
-//   'orange-600',
-//   'purple-400',
-//   'lime-600',
-//   'sky-600',
-//   'red-600',
-//   'stone-600',
-//   'emerald-400',
-// ] as const;
-
-// export const SVG_COLORS = COLORS.map((el) => `stroke-${el}`);
-// export const BADGES_COLORS = COLORS.map((el) => `bg-${el}`);
