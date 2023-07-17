@@ -44,7 +44,7 @@ export function setInitialSpeed(newSpeed: number) {
   dataStore.initialSpeed = newSpeed;
 }
 
-export function setslowdownTime(newSpeed: number) {
+export function setSlowdownTime(newSpeed: number) {
   dataStore.slowdownTime = newSpeed;
 }
 

@@ -6,7 +6,7 @@ import { CustomSliderComponent } from '@/components/Sliders';
 import {
   optionsActions,
   setInitialSpeed,
-  setslowdownTime,
+  setSlowdownTime,
   useDataStoreSync,
 } from '@/utils/DataStore';
 import { INITIAL_SPEED, SLOWDOWN_TIME } from '@/utils/constants';
@@ -46,7 +46,7 @@ function LeftMenuConfig() {
         label="Slowdown time (seconds) :"
         value={slowdownTime}
         handleValueChanges={(newVal: number) => {
-          setslowdownTime(newVal);
+          setSlowdownTime(newVal);
         }}
         min={SLOWDOWN_TIME.MIN}
         max={SLOWDOWN_TIME.MAX}
