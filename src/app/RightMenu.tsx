@@ -2,29 +2,35 @@
 
 import { Play, Rewind } from 'lucide-react';
 
-import { changeWheelStatus, useDataStoreAsync } from '@/utils/DataStore';
+import {
+  IDataStore,
+  changeWheelStatus,
+  useDataStoreAsync,
+} from '@/utils/DataStore';
 import { BADGES_COLORS, INITIAL_SPEED, SLOWDOWN_TIME } from '@/utils/constants';
 
 export function RightMenu() {
+  const { options } = useDataStoreAsync();
+  const filteredOptions = options.filter(Boolean);
+
   return (
     <div className="w-full space-y-4 sm:w-56">
-      <SpinTheWheelButton />
-      <RightMenuCaptions />
+      <SpinTheWheelButton options={filteredOptions} />
+      <RightMenuCaptions options={filteredOptions} />
     </div>
   );
 }
 
-function SpinTheWheelButton() {
-  const { wheelStatus, initialSpeed, slowdownTime, options } =
-    useDataStoreAsync();
+type HasOptions = { options: IDataStore['options'] };
 
-  const filteredOptions = options.filter(Boolean);
+function SpinTheWheelButton({ options }: HasOptions) {
+  const { wheelStatus, initialSpeed, slowdownTime } = useDataStoreAsync();
 
   const isInitialSpeedInRange =
     INITIAL_SPEED.MIN <= initialSpeed && initialSpeed <= INITIAL_SPEED.MAX;
   const isslowdownTimesInRange =
     SLOWDOWN_TIME.MIN <= slowdownTime && slowdownTime <= SLOWDOWN_TIME.MAX;
-  const thereAreEnoughOptions = filteredOptions.length >= 2;
+  const thereAreEnoughOptions = options.length >= 2;
 
   const canSpinTheWheel =
     wheelStatus !== 'spinning' &&
@@ -76,29 +82,27 @@ function SpinTheWheelButton() {
   );
 }
 
-function RightMenuCaptions() {
-  const { options } = useDataStoreAsync();
-  const filteredOptions = options.filter(Boolean);
-
+function RightMenuCaptions({ options }: HasOptions) {
   return (
     <div className="card card-compact w-full bg-neutral text-neutral-content shadow-md">
       <div className="card-body">
-        <p className="text-lg font-bold">Caption</p>
-
-        {filteredOptions.length < 2 && (
+        {options.length < 2 && (
           <p className="italic">Add at least two options to spin the wheel !</p>
         )}
 
-        {filteredOptions.length
-          ? filteredOptions.map((opt, idx) => (
+        {options.length ? (
+          <>
+            <p className="text-lg font-bold">Caption</p>
+            {options.map((opt, idx) => (
               <div key={idx} className="flex items-center">
                 <p
                   className={`mr-2 h-3 w-3 shrink-0 grow-0 rounded-full shadow ${BADGES_COLORS[idx]}`}
                 />
                 <p className="truncate">{`${idx + 1}. ${opt}`}</p>
               </div>
-            ))
-          : null}
+            ))}
+          </>
+        ) : null}
       </div>
     </div>
   );

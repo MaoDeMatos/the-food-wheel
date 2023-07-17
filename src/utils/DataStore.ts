@@ -6,7 +6,7 @@ type Option = string;
 
 type WheelImage = string;
 
-type IDataStore = {
+export type IDataStore = {
   wheelStatus: 'spinning' | 'stopped' | 'ready';
   initialSpeed: number;
   slowdownTime: number;

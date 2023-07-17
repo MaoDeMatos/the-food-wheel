@@ -80,14 +80,17 @@ function LeftMenuOptions() {
             }
             disabled={wheelStatus === 'spinning'}
           />
-          <button
-            type="button"
-            className="absolute right-1.5 top-[52%] z-[1] flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full p-1 ring-current transition hover:ring-2 disabled:cursor-not-allowed disabled:hover:ring-0"
-            onClick={() => optionsActions.removeOptionById(idx)}
-            disabled={wheelStatus === 'spinning'}
-          >
-            ✕
-          </button>
+
+          {options.length > 1 ? (
+            <button
+              type="button"
+              className="absolute right-1.5 top-[52%] z-[1] flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full p-1 ring-current transition hover:ring-2 disabled:cursor-not-allowed disabled:hover:ring-0"
+              onClick={() => optionsActions.removeOptionById(idx)}
+              disabled={wheelStatus === 'spinning'}
+            >
+              ✕
+            </button>
+          ) : null}
         </div>
       ))}
 

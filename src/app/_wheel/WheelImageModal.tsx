@@ -19,7 +19,7 @@ export function WheelImageModal({
   error,
   setError,
 }: WheelImageModalProps) {
-  const isMounted = useIsMounted();
+  const isMounted = useIsMounted(); // Use this to avoid SSR errors
 
   function closeModal() {
     setIsOpen(false);
