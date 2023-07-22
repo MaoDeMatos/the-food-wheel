@@ -22,8 +22,9 @@ module.exports = {
         light: {
           'color-scheme': 'light',
           primary: '#F2C2CF', // BF7892 F2C2CF
-          secondary: '#46328C',
-          accent: '#8C2A3C',
+          'primary-content': '#593B33',
+          secondary: '#8C2A3C',
+          accent: '#46328C',
           neutral: '#FDF9FA',
           // neutral: '#F6F3F7',
           'base-100': '#FCFCFC',
