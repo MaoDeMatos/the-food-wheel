@@ -17,7 +17,7 @@ function SpinTheWheelButton() {
 
   return (
     <button
-      className="btn btn-circle btn-secondary w-full gap-2 shadow-md transition disabled:pointer-events-auto disabled:cursor-not-allowed disabled:shadow-sm"
+      className="btn btn-circle btn-secondary w-full gap-2 shadow-md transition disabled:pointer-events-auto disabled:cursor-not-allowed disabled:shadow"
       type="button"
       onClick={() => send('SPIN')}
       disabled={!wheelState.matches('ready')}

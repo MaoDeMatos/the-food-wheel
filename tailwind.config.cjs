@@ -25,7 +25,7 @@ module.exports = {
           'base-100': '#FCFCFC',
           'base-200': '#F7F7F7',
           'base-300': '#EBEBEB',
-          '--main-bg': '#FCFCFC', // '--main-bg': '#E2E8F0',
+          '--main-bg': '#FCFCFC', // '--main-bg': '#E2E8F0', opacity: B3/70%
         },
       },
       {

@@ -29,7 +29,7 @@ export function ChangeWheelImage({ image, setImage }: ChangeWheelImageProps) {
     <>
       <button
         type="button"
-        className="btn btn-circle btn-primary absolute -top-0 right-0 z-[1] flex p-1"
+        className="btn btn-circle btn-primary absolute -top-0 right-0 z-[1] flex p-1 shadow-md"
         title={hasImage ? 'Remove image' : 'Add image'}
         onClick={() => (hasImage ? setImage(null) : setIsModalOpen(true))}
       >

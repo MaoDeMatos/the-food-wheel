@@ -55,7 +55,7 @@ export default function RootLayout({
           className="container mx-auto flex h-full flex-col gap-2 p-2"
         >
           {/* Main content */}
-          <div className="h-full overflow-hidden rounded-xl bg-base-200 shadow-[inset_0_0_0.5rem_0_hsl(0deg_0%_0%_/_12%)] dark:bg-base-100">
+          <div className="relative h-full overflow-hidden rounded-xl bg-base-200 dark:bg-base-100 after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:shadow-[inset_0_0_0.5rem_0_hsl(0deg_0%_0%_/_12%)]">
             {/* Children <div/> just to prevent the scrollbar overflowing the rounded container */}
             <div className="h-full overflow-auto">{children}</div>
           </div>

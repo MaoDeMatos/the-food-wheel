@@ -75,7 +75,7 @@ export function WheelContainer() {
           {image ? <ImageWheel image={image} /> : <SvgWheel />}
         </div>
       </div>
-      <p className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-center text-2xl font-extrabold !leading-snug text-transparent sm:text-4xl">
+      <p className="bg-gradient-to-br from-primary to-secondary bg-clip-text text-center text-2xl font-extrabold !leading-snug text-transparent sm:text-4xl">
         {result}
       </p>
     </div>
