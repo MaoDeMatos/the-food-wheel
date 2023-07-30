@@ -17,7 +17,7 @@ export function WheelContainer() {
   ] = wheelMachineContext.useActor();
 
   const calcResult = useRef('');
-  // We need a local duration value to avoid using slowdownTime as reset duration on our wheel
+  // We need a local duration value to avoid using `slowdownTime` as reset duration on our wheel
   const [[displayDuration, displayRotation], setDisplayValues] = useState([
     0, 0,
   ]);
@@ -56,8 +56,12 @@ export function WheelContainer() {
     <div className="relative flex w-full flex-col gap-8 text-center sm:w-72 md:w-96">
       <div className="flex flex-col items-center justify-center overflow-hidden">
         <ArrowDown className="h-12 w-12" />
-        <ChangeWheelImage image={image}
-        setImage={(newImage) => {setImage(newImage)}} />
+        <ChangeWheelImage
+          image={image}
+          setImage={(newImage) => {
+            setImage(newImage);
+          }}
+        />
         <div
           style={{
             transform: `rotate(${displayRotation}deg)`,
