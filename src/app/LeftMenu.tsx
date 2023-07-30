@@ -73,7 +73,7 @@ function LeftMenuOptions() {
         <span className="text-xs italic">({MAX_OPTIONS_NUMBER} max.)</span>
       </p>
 
-      <div className="w-full join join-vertical isolate shadow border dark:border-transparent">
+      <div className="join join-vertical isolate w-full border shadow dark:border-transparent">
         {options.map((opt, idx) => (
           <div
             key={idx}

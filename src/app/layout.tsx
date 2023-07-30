@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import { Work_Sans } from 'next/font/google';
 
 import { ThemeSelector } from '@/components/ThemeSelector';
+import { classNames } from '@/utils';
 
 import './globals.css';
 
@@ -48,14 +49,24 @@ export default function RootLayout({
         />
       </head>
 
-      <body className="h-full antialiased">
+      <body
+        className={classNames(
+          'relative h-full overflow-hidden antialiased',
+          'before:pointer-events-none before:absolute before:-left-[15%] before:top-[94%] before:aspect-square before:w-2/3 before:rounded-full',
+          'before:animate-main-bg before:bg-primary-glow before:blur-2xl before:transition', // after:top-[88%] after:left-[20%]
+          'md:before:w-full md:before:blur-3xl'
+          // 'after:pointer-events-none after:absolute after:top-full after:left-1/4 after:-z-10 after:h-1/2 after:w-1/2',
+          // 'after:rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%]',
+          // 'after:bg-primary-glow after:animate-main-bg after:transition after:blur-2xl'
+        )}
+      >
         {/* App wrapper, to ensure nothing is injected in the "overlay", by Next.js for example */}
         <div
           id="app"
           className="container mx-auto flex h-full flex-col gap-2 p-2"
         >
           {/* Main content */}
-          <div className="relative h-full overflow-hidden rounded-xl bg-base-200 dark:bg-base-100 after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:shadow-[inset_0_0_0.5rem_0_hsl(0deg_0%_0%_/_12%)]">
+          <div className="relative h-full ovrflow-hidden rounded-xl bg-base-200 after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:shadow-[inset_0_0_0.5rem_0_hsl(0deg_0%_0%_/_12%)] dark:bg-base-100">
             {/* Children <div/> just to prevent the scrollbar overflowing the rounded container */}
             <div className="h-full overflow-auto">{children}</div>
           </div>
