@@ -9,19 +9,19 @@ export default function NotFound() {
         <h2 className="px-8 text-primary">Error 404</h2>
       </Marquee>
 
-      <div className="my-2 h-0.5 w-full bg-gradient-to-r from-primary to-accent" />
+      <div className="my-2 h-0.5 w-full bg-gradient-to-r from-primary to-secondary" />
 
       <Marquee autoFill pauseOnHover direction="right" speed={25}>
         {/* Broken in dev mode, but works in production */}
         <Link
           href="/"
-          className="bg-gradient-to-r from-primary to-accent bg-clip-text px-4 font-extrabold text-transparent"
+          className="bg-gradient-to-r from-primary to-secondary bg-clip-text px-4 font-extrabold text-transparent"
         >
           Go back home.
         </Link>
       </Marquee>
 
-      <div className="my-2 h-0.5 w-full bg-gradient-to-r from-accent to-primary" />
+      <div className="my-2 h-0.5 w-full bg-gradient-to-r from-secondary to-primary" />
 
       <Marquee autoFill speed={40}>
         <h2 className="px-4">Page not found.</h2>

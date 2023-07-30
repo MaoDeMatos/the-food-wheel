@@ -1,13 +1,14 @@
 import { FileMinus, FilePlus } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 
-import { setImage, useDataStoreAsync } from '@/utils/DataStore';
-
 import { WheelImageModal } from './WheelImageModal';
 
-export function ChangeWheelImage() {
-  const { image } = useDataStoreAsync();
+type ChangeWheelImageProps = {
+  image: string | null;
+  setImage: (newImage: string | null) => void;
+};
 
+export function ChangeWheelImage({ image, setImage }: ChangeWheelImageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
@@ -28,7 +29,7 @@ export function ChangeWheelImage() {
     <>
       <button
         type="button"
-        className="btn-primary btn-circle btn absolute -top-0 right-0 z-[1] flex p-1"
+        className="btn btn-circle btn-primary absolute -top-0 right-0 z-[1] flex p-1 shadow-md"
         title={hasImage ? 'Remove image' : 'Add image'}
         onClick={() => (hasImage ? setImage(null) : setIsModalOpen(true))}
       >
@@ -39,8 +40,7 @@ export function ChangeWheelImage() {
       <WheelImageModal
         isOpen={isModalOpen}
         setIsOpen={setIsModalOpen}
-        error={error}
-        setError={setError}
+        {...{ setImage, error, setError }}
       />
     </>
   );

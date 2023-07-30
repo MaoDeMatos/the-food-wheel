@@ -1,3 +1,7 @@
+'use client';
+
+import { wheelMachineContext } from '@/utils/state';
+
 import { LeftMenu } from './LeftMenu';
 import { RightMenu } from './RightMenu';
 import { WheelContainer } from './_wheel/WheelContainer';
@@ -6,7 +10,7 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center gap-12 p-4 sm:gap-24 sm:p-8">
       <div>
-        <h1 className="bg-gradient-to-r from-primary to-accent bg-clip-text text-center text-4xl font-extrabold !leading-tight text-transparent sm:text-6xl">
+        <h1 className="bg-gradient-to-br from-primary to-secondary bg-clip-text text-center text-4xl font-extrabold !leading-tight text-transparent sm:text-6xl">
           The Food Wheel !
         </h1>
 
@@ -25,9 +29,11 @@ export default function Home() {
       </div>
 
       <div className="flex flex-wrap items-start justify-center gap-8 sm:justify-between">
-        <LeftMenu />
-        <WheelContainer />
-        <RightMenu />
+        <wheelMachineContext.Provider>
+          <LeftMenu />
+          <WheelContainer />
+          <RightMenu />
+        </wheelMachineContext.Provider>
       </div>
     </main>
   );

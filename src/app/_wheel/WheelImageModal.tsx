@@ -3,12 +3,12 @@ import { createPortal } from 'react-dom';
 import { useDropzone } from 'react-dropzone';
 
 import { classNames } from '@/utils';
-import { setImage } from '@/utils/DataStore';
 import { useIsMounted } from '@/utils/useIsMounted';
 
 interface WheelImageModalProps {
   isOpen: boolean;
   setIsOpen: (bool: boolean) => void;
+  setImage: (newImage: string | null) => void;
   error: Error | null;
   setError: (err: Error) => void;
 }
@@ -16,10 +16,11 @@ interface WheelImageModalProps {
 export function WheelImageModal({
   isOpen,
   setIsOpen,
+  setImage,
   error,
   setError,
 }: WheelImageModalProps) {
-  const isMounted = useIsMounted();
+  const isMounted = useIsMounted(); // Use this to avoid SSR errors
 
   function closeModal() {
     setIsOpen(false);
@@ -55,12 +56,12 @@ export function WheelImageModal({
             closeModal();
           }}
         >
-          <div className="modal-box relative flex flex-col items-center gap-2 bg-neutral text-neutral-content">
-            <h3 className="text-lg font-bold">Change wheel image here</h3>
+          <div className="modal-box relative flex flex-col items-center gap-2 border bg-base-100 dark:border-transparent dark:bg-neutral dark:text-neutral-content">
+            <h1 className="text-lg font-bold">Change wheel image here</h1>
 
             <button
               type="button"
-              className="btn-neutral btn-sm btn-circle btn absolute right-3 top-3"
+              className="btn btn-circle btn-neutral btn-sm absolute right-3 top-3"
               title="Close"
               onClick={closeModal}
             >
@@ -70,8 +71,10 @@ export function WheelImageModal({
             <div
               {...getRootProps({
                 className: classNames(
-                  'rounded-xl p-2 transition',
-                  isDragActive && ' bg-neutral-focus opacity-80'
+                  'p-2 relative',
+                  'rounded-xl transition absolute inset-0',
+                  isDragActive &&
+                    'opacity-60 dark:bg-neutral-focus dark:opacity-40'
                 ),
               })}
             >
@@ -83,7 +86,7 @@ export function WheelImageModal({
                 <div className="flex flex-wrap justify-center gap-1 text-sm leading-6 text-neutral-content">
                   <label
                     htmlFor="file-upload"
-                    className="btn-neutral btn-outline btn-xs btn"
+                    className="btn btn-neutral btn-outline btn-xs"
                   >
                     Upload an image
                   </label>
