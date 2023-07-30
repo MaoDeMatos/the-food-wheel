@@ -75,7 +75,7 @@ export function CustomSliderComponent({
             min={min}
             max={max}
             value={value}
-            className="range range-primary range-xs disabled:opacity-60"
+            className="range range-primary range-xs disabled:cursor-not-allowed disabled:opacity-60"
             onChange={valueChangeHandler}
             step={step}
             disabled={['reset', 'spinning'].some(wheelState.matches)}

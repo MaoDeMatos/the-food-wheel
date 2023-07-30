@@ -56,7 +56,7 @@ export function WheelImageModal({
             closeModal();
           }}
         >
-          <div className="modal-box relative flex flex-col items-center gap-2 bg-neutral text-neutral-content">
+          <div className="modal-box relative flex flex-col items-center gap-2 border bg-base-100 dark:border-transparent dark:bg-neutral dark:text-neutral-content">
             <h1 className="text-lg font-bold">Change wheel image here</h1>
 
             <button
@@ -71,8 +71,10 @@ export function WheelImageModal({
             <div
               {...getRootProps({
                 className: classNames(
-                  'rounded-xl p-2 transition',
-                  isDragActive && ' bg-neutral-focus opacity-80'
+                  'p-2 relative',
+                  'rounded-xl transition absolute inset-0',
+                  isDragActive &&
+                    'opacity-60 dark:bg-neutral-focus dark:opacity-40'
                 ),
               })}
             >

@@ -43,7 +43,8 @@ export function WheelContainer() {
       setDisplayValues([0, randomRotation + initialSpeed * 360 * slowdownTime]);
       calcResult.current = result;
     } else if (wheelStateMatches('reset')) {
-      setDisplayValues([0.15, 0]);
+      setDisplayValues([0.1, 0]);
+      calcResult.current = '';
     } else if (!['reset', 'spinning'].some(wheelStateMatches)) {
       send({
         type: 'UPDATE_CONTEXT',

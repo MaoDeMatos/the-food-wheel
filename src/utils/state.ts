@@ -49,7 +49,7 @@ const wheelMachine = createMachine(
       slowdownTime: 4,
       options: [
         'KFK 2',
-        "McDo'",
+        'Yae <3',
         '',
         // ''
       ],

@@ -33,7 +33,7 @@ function RightMenuCaptions() {
   const filteredOptions = context.options.filter(Boolean);
 
   return (
-    <div className="card card-compact w-full bg-neutral text-neutral-content shadow-md">
+    <div className="card card-compact w-full border bg-base-100 shadow-md dark:border-transparent dark:bg-neutral dark:text-neutral-content">
       <div className="card-body">
         {filteredOptions.length < 2 && (
           <p className="italic">Add at least two options to spin the wheel !</p>
