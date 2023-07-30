@@ -1,4 +1,5 @@
 import { Plus } from 'lucide-react';
+import { useEffect } from 'react';
 
 import { CustomSliderComponent } from '@/components/Sliders';
 import { INITIAL_SPEED, SLOWDOWN_TIME } from '@/utils/constants';
@@ -56,6 +57,15 @@ function LeftMenuConfig() {
 
 function LeftMenuOptions() {
   const [wheelState, send] = wheelMachineContext.useActor();
+  const { options } = wheelState.context;
+
+  const hasEmptyInput = options.some((val) => !val);
+
+  useEffect(() => {
+    if (!hasEmptyInput && options.length < MAX_OPTIONS_NUMBER) {
+      send('OPTIONS.ADD');
+    }
+  }, [wheelState.context]);
 
   return (
     <div className="space-y-4">
@@ -64,7 +74,7 @@ function LeftMenuOptions() {
         <span className="text-xs italic">({MAX_OPTIONS_NUMBER} max.)</span>
       </p>
 
-      {wheelState.context.options.map((opt, idx) => (
+      {options.map((opt, idx) => (
         <div key={idx} className="relative">
           <span className="pointer-events-none absolute left-3 top-[52%] -translate-y-1/2 select-none">
             {idx + 1}.
@@ -84,10 +94,10 @@ function LeftMenuOptions() {
             }
           />
 
-          {wheelState.context.options.length > 1 ? (
+          {options.length - 1 === idx ? null : (
             <button
               type="button"
-              className="absolute right-1.5 top-[52%] z-[1] flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full p-1 ring-current transition hover:ring-2 disabled:cursor-not-allowed disabled:hover:ring-0"
+              className="absolute text-primary-content right-1.5 top-[52%] z-[1] flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full p-1 ring-current transition hover:ring-2 disabled:cursor-not-allowed disabled:hover:ring-0"
               disabled={['reset', 'spinning'].some(wheelState.matches)}
               onClick={() => {
                 send({ type: 'OPTIONS.REMOVE', id: idx });
@@ -95,23 +105,9 @@ function LeftMenuOptions() {
             >
               ✕
             </button>
-          ) : null}
+          )}
         </div>
       ))}
-
-      {wheelState.context.options.length < MAX_OPTIONS_NUMBER && (
-        <button
-          className="btn btn-primary w-full gap-2"
-          type="button"
-          disabled={['reset', 'spinning'].some(wheelState.matches)}
-          onClick={() => {
-            send('OPTIONS.ADD');
-          }}
-        >
-          <Plus />
-          Add
-        </button>
-      )}
     </div>
   );
 }
