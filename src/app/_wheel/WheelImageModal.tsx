@@ -3,12 +3,12 @@ import { createPortal } from 'react-dom';
 import { useDropzone } from 'react-dropzone';
 
 import { classNames } from '@/utils';
-import { setImage } from '@/utils/DataStore';
 import { useIsMounted } from '@/utils/useIsMounted';
 
 interface WheelImageModalProps {
   isOpen: boolean;
   setIsOpen: (bool: boolean) => void;
+  setImage: (newImage: string | null) => void;
   error: Error | null;
   setError: (err: Error) => void;
 }
@@ -16,6 +16,7 @@ interface WheelImageModalProps {
 export function WheelImageModal({
   isOpen,
   setIsOpen,
+  setImage,
   error,
   setError,
 }: WheelImageModalProps) {

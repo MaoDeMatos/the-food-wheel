@@ -10,12 +10,13 @@
     "format": "prettier --write --ignore-path .gitignore ./src"
   },
   "dependencies": {
+    "@xstate/react": "^3.2.2",
     "lucide-react": "^0.263.0",
     "next": "^13.4.12",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
-    "valtio": "^1.11.0"
+    "xstate": "^4.38.1"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",

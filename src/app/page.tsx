@@ -1,3 +1,7 @@
+'use client';
+
+import { wheelMachineContext } from '@/utils/state';
+
 import { LeftMenu } from './LeftMenu';
 import { RightMenu } from './RightMenu';
 import { WheelContainer } from './_wheel/WheelContainer';
@@ -25,9 +29,11 @@ export default function Home() {
       </div>
 
       <div className="flex flex-wrap items-start justify-center gap-8 sm:justify-between">
-        <LeftMenu />
-        <WheelContainer />
-        <RightMenu />
+        <wheelMachineContext.Provider>
+          <LeftMenu />
+          <WheelContainer />
+          <RightMenu />
+        </wheelMachineContext.Provider>
       </div>
     </main>
   );

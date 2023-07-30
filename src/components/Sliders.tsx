@@ -1,7 +1,7 @@
 import { ChangeEvent, useMemo } from 'react';
 
 import { slugify } from '@/utils';
-import { useDataStoreAsync } from '@/utils/DataStore';
+import { wheelMachineContext } from '@/utils/state';
 
 type CustomSliderComponentProps = {
   label: string;
@@ -28,7 +28,7 @@ export function CustomSliderComponent({
   step = 1,
   withCarets = false,
 }: CustomSliderComponentProps) {
-  const { wheelStatus } = useDataStoreAsync();
+  const [wheelState] = wheelMachineContext.useActor();
 
   function valueChangeHandler(e: ChangeEvent<HTMLInputElement>) {
     handleValueChanges(Number(e.target.value));
@@ -78,7 +78,7 @@ export function CustomSliderComponent({
             className="range range-primary range-xs disabled:opacity-60"
             onChange={valueChangeHandler}
             step={step}
-            disabled={wheelStatus === 'spinning'}
+            disabled={['reset', 'spinning'].some(wheelState.matches)}
             id={labelId}
           />
 

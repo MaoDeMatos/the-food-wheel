@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import { memo, useEffect, useState } from 'react';
 
-import { useDataStoreAsync } from '@/utils/DataStore';
 import { SVG_COLORS } from '@/utils/constants';
+import { wheelMachineContext } from '@/utils/state';
 
-export const ImageWheel = memo(function ImageWheel() {
-  const { image } = useDataStoreAsync();
+type hasImage = { image: string | null };
 
+export const ImageWheel = memo(function ImageWheel({ image }: hasImage) {
   return image ? (
     <div className="relative h-full w-full overflow-hidden rounded-full border border-primary">
       <Image src={image} alt="" fill className="object-cover" />
@@ -14,10 +14,12 @@ export const ImageWheel = memo(function ImageWheel() {
   ) : null;
 });
 
-export const SvgWheel = memo(function SvgWheel() {
-  const { options } = useDataStoreAsync();
+export const SvgWheel = () => {
+  const options = wheelMachineContext.useSelector(
+    (state) => state.context.options
+  );
   const optionsCount = options.filter(Boolean).length;
-  const count = optionsCount > 1 ? optionsCount : 1;
+  const count = optionsCount || 1;
 
   const deg = (1 / count) * 360;
   const dashLength = ((1 / count) * Math.PI * 10).toFixed(2);
@@ -36,20 +38,15 @@ export const SvgWheel = memo(function SvgWheel() {
         className="fill-transparent transition-colors"
       />
       {[...new Array(count)]
-        .map((_, idx) => {
+        .map((_, index) => {
           return (
-            <SvgWheelSection
-              key={idx}
-              index={idx}
-              dashLength={dashLength}
-              deg={deg}
-            />
+            <SvgWheelSection key={index} {...{ index, dashLength, deg }} />
           );
         })
         .reverse()}
     </svg>
   );
-});
+};
 
 type SvgWheelSectionProps = {
   index: number;
