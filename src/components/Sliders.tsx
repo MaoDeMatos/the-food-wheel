@@ -1,7 +1,7 @@
 import { ChangeEvent, useMemo } from 'react';
 
 import { slugify } from '@/utils';
-import { wheelMachineContext } from '@/utils/state';
+import { wheelMachineContext } from '@/utils/wheelMachine';
 
 type CustomSliderComponentProps = {
   label: string;

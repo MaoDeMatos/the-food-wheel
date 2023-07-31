@@ -34,7 +34,7 @@ function canSpin(ctx: WheelMachineContext) {
 
 const wheelMachine = createMachine(
   {
-    tsTypes: {} as import("./state.typegen").Typegen0,
+    tsTypes: {} as import("./wheelMachine.typegen").Typegen0,
     // Will be `true` by default in version 5.0
     predictableActionArguments: true,
     id: 'Wheel Machine',

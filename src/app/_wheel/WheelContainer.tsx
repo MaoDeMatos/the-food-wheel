@@ -1,7 +1,7 @@
 import { ArrowDown } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
-import { wheelMachineContext } from '@/utils/state';
+import { wheelMachineContext } from '@/utils/wheelMachine';
 
 import { ChangeWheelImage } from './ChangeWheelImage';
 import { ImageWheel, SvgWheel } from './Wheels';

@@ -1,7 +1,7 @@
 import { Play } from 'lucide-react';
 
 import { BADGES_COLORS } from '@/utils/constants';
-import { wheelMachineContext } from '@/utils/state';
+import { wheelMachineContext } from '@/utils/wheelMachine';
 
 export function RightMenu() {
   return (
