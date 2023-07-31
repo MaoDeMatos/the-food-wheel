@@ -20,6 +20,8 @@ The idea comes from [La roue de la bouffe](http://www.larouedelabouffe.fr/), whi
 
 Run the development server locally:
 
+Run `xstate:typegen` or use the [VSCode extension](https://marketplace.visualstudio.com/items?itemName=statelyai.stately-vscode) to generate strong typings for the state machines.
+
 ```bash
 yarn dev
 # or

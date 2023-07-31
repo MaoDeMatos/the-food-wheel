@@ -7,9 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write --ignore-path .gitignore ./src"
+    "format": "prettier --write --ignore-path .gitignore ./src",
+    "xstate:typegen": "xstate typegen \"./src/**/*.ts?(x)\""
   },
   "dependencies": {
+    "@xstate/cli": "^0.5.2",
     "@xstate/react": "^3.2.2",
     "lucide-react": "^0.263.1",
     "next": "^13.4.12",
