@@ -34,7 +34,7 @@ function canSpin(ctx: WheelMachineContext) {
 
 const wheelMachine = createMachine(
   {
-    tsTypes: {} as import("./wheelMachine.typegen").Typegen0,
+    tsTypes: {} as import('./wheelMachine.typegen').Typegen0,
     // Will be `true` by default in version 5.0
     predictableActionArguments: true,
     id: 'Wheel Machine',
@@ -50,7 +50,7 @@ const wheelMachine = createMachine(
       slowdownTime: 4,
       options: [
         'KFK 2',
-        'Yae <3',
+        'BK',
         '',
         // ''
       ],
@@ -58,52 +58,32 @@ const wheelMachine = createMachine(
     },
 
     on: {
-      UPDATE_CONTEXT: {
-        actions: assign((_, event) => event.value),
-      },
-      'OPTIONS.ADD': {
-        actions: assign((ctx, event) => {
-          ctx.options.push(event?.value ?? '');
-          return { options: ctx.options };
-        }),
-      },
-      'OPTIONS.REMOVE': {
-        actions: assign((ctx, event) => {
-          ctx.options.splice(event.id, 1);
-          return { options: ctx.options };
-        }),
-      },
-      'OPTIONS.CHANGE': {
-        actions: assign((ctx, event) => {
-          ctx.options[event.id] = event.value;
-          return { options: ctx.options };
-        }),
-      },
+      UPDATE_CONTEXT: { actions: ['updateContext'] },
+      'OPTIONS.ADD': { actions: ['addOption'] },
+      'OPTIONS.REMOVE': { actions: ['removeOption'] },
+      'OPTIONS.CHANGE': { actions: ['changeOptionValue'] },
     },
 
     states: {
       'not ready': {
-        always: [{ target: 'ready', cond: 'canSpin' }],
+        always: { target: 'ready', cond: 'canSpin' },
       },
 
       ready: {
-        always: [{ target: 'not ready', cond: 'cannotSpin' }],
-        on: {
-          SPIN: {
-            target: 'reset',
-          },
-        },
+        always: { target: 'not ready', cond: 'cannotSpin' },
+        on: { SPIN: 'reset.spin' },
       },
 
       reset: {
-        after: { 150: 'spinning' },
+        states: {
+          spin: { after: { 150: '#Wheel Machine.spinning' } },
+          stop: { after: { 100: '#Wheel Machine.not ready' } },
+        },
       },
 
       spinning: {
         after: { STOPPING_DELAY: 'not ready' },
-        // on: {
-        //   STOP: 'stopped',
-        // },
+        on: { STOP: 'reset.stop' },
       },
     },
   },
@@ -115,6 +95,21 @@ const wheelMachine = createMachine(
     guards: {
       canSpin: (ctx) => canSpin(ctx),
       cannotSpin: (ctx) => !canSpin(ctx),
+    },
+    actions: {
+      updateContext: assign((_, event) => event.value),
+      addOption: assign((ctx, event) => {
+        ctx.options.push(event?.value ?? '');
+        return { options: ctx.options };
+      }),
+      removeOption: assign((ctx, event) => {
+        ctx.options.splice(event.id, 1);
+        return { options: ctx.options };
+      }),
+      changeOptionValue: assign((ctx, event) => {
+        ctx.options[event.id] = event.value;
+        return { options: ctx.options };
+      }),
     },
   }
 );
