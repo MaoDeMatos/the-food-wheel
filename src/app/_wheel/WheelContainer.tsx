@@ -1,19 +1,29 @@
 import { ArrowDown } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
+import {
+  useWheelImageMachine,
+  wheelImageMachineContext,
+} from '@/utils/wheelImageMachine';
 import { wheelMachineContext } from '@/utils/wheelMachine';
 
 import { ChangeWheelImage } from './ChangeWheelImage';
 import { ImageWheel, SvgWheel } from './Wheels';
 
-export function WheelContainer() {
+export const WheelContainer = () => (
+  <wheelImageMachineContext.Provider>
+    <WheelContainerComponent />
+  </wheelImageMachineContext.Provider>
+);
+
+function WheelContainerComponent() {
   const [
     {
       value: wheelState,
       matches: wheelStateMatches,
       context: { initialSpeed, slowdownTime, options, result },
     },
-    send,
+    sendToWheelMachine,
   ] = wheelMachineContext.useActor();
 
   const calcResult = useRef('');
@@ -22,7 +32,12 @@ export function WheelContainer() {
     0, 0,
   ]);
 
-  const [image, setImage] = useState<string | null>(null);
+  const [
+    {
+      context: { image },
+    },
+    sendToImageMachine,
+  ] = useWheelImageMachine();
 
   useEffect(() => {
     switch (true) {
@@ -54,7 +69,7 @@ export function WheelContainer() {
         break;
 
       case !['reset', 'spinning'].some(wheelStateMatches):
-        send({
+        sendToWheelMachine({
           type: 'UPDATE_CONTEXT',
           value: { result: calcResult.current },
         });
@@ -72,7 +87,7 @@ export function WheelContainer() {
         <ChangeWheelImage
           image={image}
           setImage={(newImage) => {
-            setImage(newImage);
+            sendToImageMachine({ type: 'IMAGE.SET', value: newImage });
           }}
         />
         <div
