@@ -1,19 +1,29 @@
 import { ArrowDown } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
-import { wheelMachineContext } from '@/utils/state';
+import {
+  useWheelImageMachine,
+  wheelImageMachineContext,
+} from '@/utils/wheelImageMachine';
+import { wheelMachineContext } from '@/utils/wheelMachine';
 
 import { ChangeWheelImage } from './ChangeWheelImage';
 import { ImageWheel, SvgWheel } from './Wheels';
 
-export function WheelContainer() {
+export const WheelContainer = () => (
+  <wheelImageMachineContext.Provider>
+    <WheelContainerComponent />
+  </wheelImageMachineContext.Provider>
+);
+
+function WheelContainerComponent() {
   const [
     {
       value: wheelState,
       matches: wheelStateMatches,
       context: { initialSpeed, slowdownTime, options, result },
     },
-    send,
+    sendToWheelMachine,
   ] = wheelMachineContext.useActor();
 
   const calcResult = useRef('');
@@ -22,34 +32,51 @@ export function WheelContainer() {
     0, 0,
   ]);
 
-  const [image, setImage] = useState<string | null>(null);
+  const [
+    {
+      context: { image },
+    },
+    sendToImageMachine,
+  ] = useWheelImageMachine();
 
   useEffect(() => {
-    if (wheelStateMatches('spinning')) {
-      const randomRotation = Math.round(Math.random() * 360);
-      const arrowPos = 360 - randomRotation;
+    switch (true) {
+      case wheelStateMatches('spinning'):
+        const randomRotation = Math.round(Math.random() * 360);
+        const arrowPos = 360 - randomRotation;
 
-      const optionsCount = options.filter(Boolean).length;
-      const sectionSize = (1 / optionsCount) * 360;
-      const sections = [...new Array(optionsCount)].map((_, idx) => [
-        idx * sectionSize,
-        (idx + 1) * sectionSize - 1,
-      ]);
-      const targetSectionIdx = sections.findIndex(
-        (el) => el[0] <= arrowPos && arrowPos < el[1]
-      );
-      const result = options[targetSectionIdx];
+        const optionsCount = options.filter(Boolean).length;
+        const sectionSize = (1 / optionsCount) * 360;
+        const sections = [...new Array(optionsCount)].map((_, idx) => [
+          idx * sectionSize,
+          (idx + 1) * sectionSize - 1,
+        ]);
+        const targetSectionIdx = sections.findIndex(
+          (el) => el[0] <= arrowPos && arrowPos < el[1]
+        );
+        const result = options[targetSectionIdx];
 
-      setDisplayValues([0, randomRotation + initialSpeed * 360 * slowdownTime]);
-      calcResult.current = result;
-    } else if (wheelStateMatches('reset')) {
-      setDisplayValues([0.1, 0]);
-      calcResult.current = '';
-    } else if (!['reset', 'spinning'].some(wheelStateMatches)) {
-      send({
-        type: 'UPDATE_CONTEXT',
-        value: { result: calcResult.current },
-      });
+        setDisplayValues([
+          0,
+          randomRotation + initialSpeed * 360 * slowdownTime,
+        ]);
+        calcResult.current = result;
+        break;
+
+      case wheelStateMatches('reset'):
+        setDisplayValues([0.1, 0]);
+        calcResult.current = '';
+        break;
+
+      case !['reset', 'spinning'].some(wheelStateMatches):
+        sendToWheelMachine({
+          type: 'UPDATE_CONTEXT',
+          value: { result: calcResult.current },
+        });
+        break;
+
+      default:
+        break;
     }
   }, [wheelState]);
 
@@ -60,7 +87,7 @@ export function WheelContainer() {
         <ChangeWheelImage
           image={image}
           setImage={(newImage) => {
-            setImage(newImage);
+            sendToImageMachine({ type: 'IMAGE.SET', value: newImage });
           }}
         />
         <div

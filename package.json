@@ -7,12 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write --ignore-path .gitignore ./src"
+    "format": "prettier --write --ignore-path .gitignore ./src",
+    "xstate:typegen": "xstate typegen \"./src/**/*.ts?(x)\""
   },
   "dependencies": {
+    "@xstate/cli": "^0.5.2",
     "@xstate/react": "^3.2.2",
-    "lucide-react": "^0.263.1",
-    "next": "^13.4.12",
+    "lucide-react": "^0.279.0",
+    "next": "^13.5.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
@@ -20,19 +22,19 @@
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
-    "@types/node": "^20.4.5",
-    "@types/react": "^18.2.17",
+    "@types/node": "^20.6.2",
+    "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
-    "autoprefixer": "^10.4.14",
-    "daisyui": "^3.5.0",
-    "eslint": "8.46.0",
-    "eslint-config-next": "13.4.12",
+    "autoprefixer": "^10.4.15",
+    "daisyui": "^3.7.6",
+    "eslint": "8.49.0",
+    "eslint-config-next": "13.5.1",
     "eslint-plugin-valtio": "^0.6.2",
-    "postcss": "^8.4.27",
-    "prettier": "^3.0.0",
-    "prettier-plugin-tailwindcss": "^0.4.1",
+    "postcss": "^8.4.30",
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.4",
     "tailwindcss": "^3.3.3",
-    "typescript": "5.1.6"
+    "typescript": "5.2.2"
   },
   "packageManager": "yarn@3.5.1"
 }

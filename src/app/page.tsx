@@ -1,6 +1,6 @@
 'use client';
 
-import { wheelMachineContext } from '@/utils/state';
+import { wheelMachineContext } from '@/utils/wheelMachine';
 
 import { LeftMenu } from './LeftMenu';
 import { RightMenu } from './RightMenu';

@@ -53,11 +53,8 @@ export default function RootLayout({
         className={classNames(
           'relative h-full overflow-hidden antialiased',
           'before:pointer-events-none before:absolute before:-left-[15%] before:top-[94%] before:aspect-square before:w-2/3 before:rounded-full',
-          'before:animate-main-bg before:bg-primary-glow before:blur-2xl before:transition', // after:top-[88%] after:left-[20%]
+          'before:animate-main-bg before:bg-primary-glow before:blur-2xl before:transition',
           'md:before:w-full md:before:blur-3xl'
-          // 'after:pointer-events-none after:absolute after:top-full after:left-1/4 after:-z-10 after:h-1/2 after:w-1/2',
-          // 'after:rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%]',
-          // 'after:bg-primary-glow after:animate-main-bg after:transition after:blur-2xl'
         )}
       >
         {/* App wrapper, to ensure nothing is injected in the "overlay", by Next.js for example */}

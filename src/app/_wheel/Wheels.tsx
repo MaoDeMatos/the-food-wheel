@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { memo, useEffect, useState } from 'react';
 
 import { SVG_COLORS } from '@/utils/constants';
-import { wheelMachineContext } from '@/utils/state';
+import { wheelMachineContext } from '@/utils/wheelMachine';
 
 type hasImage = { image: string | null };
 

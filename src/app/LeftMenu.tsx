@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { CustomSliderComponent } from '@/components/Sliders';
 import { INITIAL_SPEED, SLOWDOWN_TIME } from '@/utils/constants';
-import { wheelMachineContext } from '@/utils/state';
+import { wheelMachineContext } from '@/utils/wheelMachine';
 
 export function LeftMenu() {
   return (
@@ -59,6 +59,7 @@ function LeftMenuOptions() {
   const { options } = wheelState.context;
 
   const hasEmptyInput = options.some((val) => !val);
+  const disabled = ['reset', 'spinning'].some(wheelState.matches)
 
   useEffect(() => {
     if (!hasEmptyInput && options.length < MAX_OPTIONS_NUMBER) {
@@ -87,7 +88,7 @@ function LeftMenuOptions() {
               placeholder="Pizza ?"
               className="input join-item input-md w-full pl-7 pr-8"
               value={opt}
-              disabled={['reset', 'spinning'].some(wheelState.matches)}
+              disabled={disabled}
               onChange={(e) =>
                 send({
                   type: 'OPTIONS.CHANGE',
@@ -100,7 +101,7 @@ function LeftMenuOptions() {
               <button
                 type="button"
                 className="absolute right-1.5 top-[52%] z-[1] flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full p-1 ring-current transition hover:ring-2 disabled:cursor-not-allowed disabled:hover:ring-0"
-                disabled={['reset', 'spinning'].some(wheelState.matches)}
+                disabled={disabled}
                 onClick={() => {
                   send({ type: 'OPTIONS.REMOVE', id: idx });
                 }}
