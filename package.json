@@ -11,30 +11,30 @@
     "xstate:typegen": "xstate typegen \"./src/**/*.ts?(x)\""
   },
   "dependencies": {
-    "@xstate/cli": "^0.5.4",
+    "@xstate/cli": "^0.5.17",
     "@xstate/react": "^3.2.2",
-    "lucide-react": "^0.286.0",
-    "next": "^13.5.4",
+    "lucide-react": "^0.335.0",
+    "next": "^13.5.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
-    "xstate": "^4.38.2"
+    "xstate": "^4.38.3"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
-    "@types/node": "^20.8.5",
-    "@types/react": "^18.2.28",
-    "@types/react-dom": "^18.2.13",
-    "autoprefixer": "^10.4.16",
-    "daisyui": "^3.9.2",
-    "eslint": "8.51.0",
-    "eslint-config-next": "13.5.4",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/node": "^20.11.19",
+    "@types/react": "^18.2.57",
+    "@types/react-dom": "^18.2.19",
+    "autoprefixer": "^10.4.17",
+    "daisyui": "^3.9.4",
+    "eslint": "8.56.0",
+    "eslint-config-next": "13.5.6",
     "eslint-plugin-valtio": "^0.6.2",
-    "postcss": "^8.4.31",
-    "prettier": "^3.0.3",
-    "prettier-plugin-tailwindcss": "^0.5.5",
-    "tailwindcss": "^3.3.3",
-    "typescript": "5.2.2"
+    "postcss": "^8.4.35",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "tailwindcss": "^3.4.1",
+    "typescript": "5.3.3"
   },
-  "packageManager": "yarn@3.5.1"
+  "packageManager": "yarn@4.1.0"
 }
