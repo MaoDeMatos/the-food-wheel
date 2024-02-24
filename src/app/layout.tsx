@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-sync-scripts */
 import { Github } from 'lucide-react';
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 import { Work_Sans } from 'next/font/google';
 
 import { ThemeSelector } from '@/components/ThemeSelector';
@@ -14,6 +14,13 @@ const work_sans = Work_Sans({
   display: 'swap',
 });
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#FCFCFC' },
+    { media: '(prefers-color-scheme: dark)', color: '#121217' },
+  ],
+};
+
 export const metadata: Metadata = {
   title: 'The Food Wheel',
   description:
@@ -21,10 +28,6 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#FCFCFC' },
-    { media: '(prefers-color-scheme: dark)', color: '#121217' },
-  ],
 };
 
 export default function RootLayout({

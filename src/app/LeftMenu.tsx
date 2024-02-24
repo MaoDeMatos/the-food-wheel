@@ -59,7 +59,7 @@ function LeftMenuOptions() {
   const { options } = wheelState.context;
 
   const hasEmptyInput = options.some((val) => !val);
-  const disabled = ['reset', 'spinning'].some(wheelState.matches)
+  const disabled = ['reset', 'spinning'].some(wheelState.matches);
 
   useEffect(() => {
     if (!hasEmptyInput && options.length < MAX_OPTIONS_NUMBER) {
