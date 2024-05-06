@@ -2187,13 +2187,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-valtio@npm:^0.6.3":
-  version: 0.6.3
-  resolution: "eslint-plugin-valtio@npm:0.6.3"
-  checksum: 10c0/4c7a04008dca83500ef7f4c6210bdbe9e36a51c0604c178aa55a65f7a5cc6df6bd1521500637694b57e66ee7258976e549ff1aafaf935164a6c73a55de859a4d
-  languageName: node
-  linkType: hard
-
 "eslint-scope@npm:^7.2.2":
   version: 7.2.2
   resolution: "eslint-scope@npm:7.2.2"
@@ -5165,7 +5158,6 @@ __metadata:
     daisyui: "npm:^3.9.4"
     eslint: "npm:8.57.0"
     eslint-config-next: "npm:14.1.4"
-    eslint-plugin-valtio: "npm:^0.6.3"
     lucide-react: "npm:^0.378.0"
     next: "npm:^14.2.3"
     postcss: "npm:^8.4.38"
