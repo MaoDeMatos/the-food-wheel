@@ -897,22 +897,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xstate/react@npm:^3.2.2":
-  version: 3.2.2
-  resolution: "@xstate/react@npm:3.2.2"
+"@xstate/react@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "@xstate/react@npm:4.1.1"
   dependencies:
     use-isomorphic-layout-effect: "npm:^1.1.2"
-    use-sync-external-store: "npm:^1.0.0"
+    use-sync-external-store: "npm:^1.2.0"
   peerDependencies:
-    "@xstate/fsm": ^2.0.0
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    xstate: ^4.37.2
+    xstate: ^5.11.0
   peerDependenciesMeta:
-    "@xstate/fsm":
-      optional: true
     xstate:
       optional: true
-  checksum: 10c0/3aab6169295fcbd77a217535d8674557165c5a931fc70c61824df89fdd0e54fe89468b7ca2690f78a3c0ad0612d1f9913b29c4667af06db0682d396a092c4f82
+  checksum: 10c0/4687f1a97315612cc2e4833453a3614f1a6a656494680c7c4bee901141765ad4c5d6ed1a76f6cbacaa32f6b533eae67274b0c31bd688ba011c67475fd9c2708d
   languageName: node
   linkType: hard
 
@@ -5153,7 +5150,7 @@ __metadata:
     "@types/react": "npm:^18.3.1"
     "@types/react-dom": "npm:^18.3.0"
     "@xstate/cli": "npm:^0.5.17"
-    "@xstate/react": "npm:^3.2.2"
+    "@xstate/react": "npm:^4.1.1"
     autoprefixer: "npm:^10.4.19"
     daisyui: "npm:^3.9.4"
     eslint: "npm:8.57.0"
@@ -5168,7 +5165,7 @@ __metadata:
     react-dropzone: "npm:^14.2.3"
     tailwindcss: "npm:^3.4.3"
     typescript: "npm:5.4.5"
-    xstate: "npm:^4.38.3"
+    xstate: "npm:^5.13.0"
   languageName: unknown
   linkType: soft
 
@@ -5431,12 +5428,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-sync-external-store@npm:^1.0.0":
-  version: 1.2.0
-  resolution: "use-sync-external-store@npm:1.2.0"
+"use-sync-external-store@npm:^1.2.0":
+  version: 1.2.2
+  resolution: "use-sync-external-store@npm:1.2.2"
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10c0/ac4814e5592524f242921157e791b022efe36e451fe0d4fd4d204322d5433a4fc300d63b0ade5185f8e0735ded044c70bcf6d2352db0f74d097a238cebd2da02
+  checksum: 10c0/23b1597c10adf15b26ade9e8c318d8cc0abc9ec0ab5fc7ca7338da92e89c2536abd150a5891bf076836c352fdfa104fc7231fb48f806fd9960e0cbe03601abaf
   languageName: node
   linkType: hard
 
@@ -5605,10 +5602,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"xstate@npm:^4.38.3":
-  version: 4.38.3
-  resolution: "xstate@npm:4.38.3"
-  checksum: 10c0/8a2063743517390107275113bca0e757dba99102e7d57d40cf656b5cc03a6f2c5e10fbf3752294d9d29fbe1d8757bb9a54f54c934a22f205a237956dd10dcd0f
+"xstate@npm:^5.13.0":
+  version: 5.13.0
+  resolution: "xstate@npm:5.13.0"
+  checksum: 10c0/7369e03ec11849ab3e147cf06420e84cfa2753decd5865eb18c3e34ca43bf706ca88f76262a29c522bbc8d2a7661668f6acea1359d5f401a616c798a02545937
   languageName: node
   linkType: hard
 

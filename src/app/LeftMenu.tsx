@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { CustomSliderComponent } from '@/components/Sliders';
 import { INITIAL_SPEED, SLOWDOWN_TIME } from '@/utils/constants';
-import { wheelMachineContext } from '@/utils/wheelMachine';
+import { useWheelMachineContext } from '@/utils/wheelMachine';
 
 export function LeftMenu() {
   return (
@@ -18,7 +18,12 @@ export function LeftMenu() {
 const MAX_OPTIONS_NUMBER = 9;
 
 function LeftMenuConfig() {
-  const [{ context }, send] = wheelMachineContext.useActor();
+  const [
+    {
+      context: { slowdownTime, initialSpeed },
+    },
+    send,
+  ] = useWheelMachineContext();
 
   return (
     <div className="space-y-4">
@@ -26,7 +31,7 @@ function LeftMenuConfig() {
 
       <CustomSliderComponent
         label="Initial speed (turns/sec) :"
-        value={context.initialSpeed}
+        value={initialSpeed}
         isValueVisible={false}
         handleValueChanges={(newVal: number) => {
           send({
@@ -40,7 +45,7 @@ function LeftMenuConfig() {
       />
       <CustomSliderComponent
         label="Slowdown time (seconds) :"
-        value={context.slowdownTime}
+        value={slowdownTime}
         handleValueChanges={(newVal: number) => {
           send({
             type: 'UPDATE_CONTEXT',
@@ -55,17 +60,21 @@ function LeftMenuConfig() {
 }
 
 function LeftMenuOptions() {
-  const [wheelState, send] = wheelMachineContext.useActor();
-  const { options } = wheelState.context;
+  const [machine, send] = useWheelMachineContext();
 
-  const hasEmptyInput = options.some((val) => !val);
-  const disabled = ['reset', 'spinning'].some(wheelState.matches);
+  const {
+    context: { options },
+  } = machine;
+
+  const disabled = machine.matches('reset') || machine.matches('spinning');
 
   useEffect(() => {
+    const hasEmptyInput = options.some((val) => !val);
+
     if (!hasEmptyInput && options.length < MAX_OPTIONS_NUMBER) {
-      send('OPTIONS.ADD');
+      send({ type: 'OPTIONS.ADD' });
     }
-  }, [wheelState.context]);
+  }, [options]);
 
   return (
     <div className="space-y-4">

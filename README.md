@@ -1,6 +1,6 @@
 # 🍱 The Food Wheel
 
-This is a [Next.js](https://nextjs.org/) project created to experiment with **_Next.js 13_** (the `AppDir` and later on, [`Turbopack`](https://turbo.build/pack)).
+This is a Next.js project created to experiment with different tools, like **_[Next.js](https://nextjs.org/) 13_** (the `AppDir` and later on, [`Turbopack`](https://turbo.build/pack)) or [**_XState_**](https://xstate.js.org/).
 
 ## If you don't know where to eat, let the wheel decide for you !
 
@@ -20,12 +20,8 @@ The idea comes from [La roue de la bouffe](http://www.larouedelabouffe.fr/), whi
 
 Run the development server locally:
 
-Run `xstate:typegen` or use the [VSCode extension](https://marketplace.visualstudio.com/items?itemName=statelyai.stately-vscode) to generate strong typings for the state machines.
-
 ```bash
 yarn dev
-# or
-npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
