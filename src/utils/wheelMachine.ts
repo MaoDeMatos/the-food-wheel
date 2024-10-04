@@ -1,9 +1,9 @@
 'use client';
 
-import { createActorContext } from '@xstate/react';
-import { assign, createMachine } from 'xstate';
+import { assign, setup } from 'xstate';
 
 import { INITIAL_SPEED, SLOWDOWN_TIME } from './constants';
+import { createMachineContext } from './createMachineContext';
 
 type Option = string;
 
@@ -32,86 +32,87 @@ function canSpin(ctx: WheelMachineContext) {
   );
 }
 
-const wheelMachine = createMachine(
-  {
-    tsTypes: {} as import('./wheelMachine.typegen').Typegen0,
-    // Will be `true` by default in version 5.0
-    predictableActionArguments: true,
-    id: 'Wheel Machine',
-    initial: 'not ready',
+const wheelMachine = setup({
+  types: {} as {
+    context: WheelMachineContext;
+    events: WheelMachineEvents;
+  },
 
-    schema: {
-      context: {} as WheelMachineContext,
-      events: {} as WheelMachineEvents,
+  delays: {
+    STOPPING_DELAY: ({ context }) => context.slowdownTime * 1000,
+  },
+}).createMachine({
+  id: 'WheelMachine',
+  context: {
+    initialSpeed: 6,
+    slowdownTime: 4,
+    options: ['KFK 2', 'BK', ''],
+    result: '',
+  },
+
+  // Global events
+  on: {
+    UPDATE_CONTEXT: {
+      actions: [assign(({ event }) => event?.value)],
     },
-
-    context: {
-      initialSpeed: 4,
-      slowdownTime: 4,
-      options: [
-        'KFK 2',
-        'BK',
-        '',
-        // ''
+    'OPTIONS.ADD': {
+      actions: [
+        assign(({ context, event }) => {
+          return { options: [...context.options, event?.value ?? ''] };
+        }),
       ],
-      result: '',
+    },
+    'OPTIONS.REMOVE': {
+      actions: [
+        assign(({ context, event }) => {
+          return { options: [...context.options.toSpliced(event.id, 1)] };
+        }),
+      ],
+    },
+    'OPTIONS.CHANGE': {
+      actions: [
+        assign(({ context, event }) => {
+          context.options[event.id] = event.value;
+          return { options: [...context.options] };
+        }),
+      ],
+    },
+  },
+
+  // States
+  initial: 'not ready',
+
+  states: {
+    'not ready': {
+      always: {
+        target: 'ready',
+        guard: ({ context }) => canSpin(context),
+      },
     },
 
-    on: {
-      UPDATE_CONTEXT: { actions: ['updateContext'] },
-      'OPTIONS.ADD': { actions: ['addOption'] },
-      'OPTIONS.REMOVE': { actions: ['removeOption'] },
-      'OPTIONS.CHANGE': { actions: ['changeOptionValue'] },
+    ready: {
+      always: {
+        target: 'not ready',
+        guard: ({ context }) => !canSpin(context),
+      },
+      on: { SPIN: 'reset.spin' },
     },
 
-    states: {
-      'not ready': {
-        always: { target: 'ready', cond: 'canSpin' },
-      },
+    spinning: {
+      after: { STOPPING_DELAY: 'not ready' },
+      on: { STOP: 'reset.stop' },
+    },
 
-      ready: {
-        always: { target: 'not ready', cond: 'cannotSpin' },
-        on: { SPIN: 'reset.spin' },
-      },
-
-      reset: {
-        states: {
-          spin: { after: { 150: '#Wheel Machine.spinning' } },
-          stop: { after: { 100: '#Wheel Machine.not ready' } },
-        },
-      },
-
-      spinning: {
-        after: { STOPPING_DELAY: 'not ready' },
-        on: { STOP: 'reset.stop' },
+    reset: {
+      initial: 'spin',
+      states: {
+        spin: { after: { 150: '#WheelMachine.spinning' } },
+        stop: { after: { 100: '#WheelMachine.not ready' } },
       },
     },
   },
-  // Machine options
-  {
-    delays: {
-      STOPPING_DELAY: (ctx) => ctx.slowdownTime * 1000,
-    },
-    guards: {
-      canSpin: (ctx) => canSpin(ctx),
-      cannotSpin: (ctx) => !canSpin(ctx),
-    },
-    actions: {
-      updateContext: assign((_, event) => event.value),
-      addOption: assign((ctx, event) => {
-        ctx.options.push(event?.value ?? '');
-        return { options: ctx.options };
-      }),
-      removeOption: assign((ctx, event) => {
-        ctx.options.splice(event.id, 1);
-        return { options: ctx.options };
-      }),
-      changeOptionValue: assign((ctx, event) => {
-        ctx.options[event.id] = event.value;
-        return { options: ctx.options };
-      }),
-    },
-  }
-);
+});
 
-export const wheelMachineContext = createActorContext(wheelMachine);
+export const wheelMachineContext = createMachineContext(wheelMachine);
+
+export const useWheelMachineContext = wheelMachineContext.useMachineContext;

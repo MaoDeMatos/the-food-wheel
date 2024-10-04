@@ -1,8 +1,9 @@
 import Image from 'next/image';
-import { memo, useEffect, useState } from 'react';
+import { memo } from 'react';
 
 import { SVG_COLORS } from '@/utils/constants';
-import { wheelMachineContext } from '@/utils/wheelMachine';
+import { useIsMounted } from '@/utils/useIsMounted';
+import { useWheelMachineContext } from '@/utils/wheelMachine';
 
 type hasImage = { image: string | null };
 
@@ -15,9 +16,12 @@ export const ImageWheel = memo(function ImageWheel({ image }: hasImage) {
 });
 
 export const SvgWheel = () => {
-  const options = wheelMachineContext.useSelector(
-    (state) => state.context.options
-  );
+  const [
+    {
+      context: { options },
+    },
+  ] = useWheelMachineContext();
+
   const optionsCount = options.filter(Boolean).length;
   const count = optionsCount || 1;
 
@@ -55,11 +59,7 @@ type SvgWheelSectionProps = {
 };
 
 function SvgWheelSection({ index, deg, dashLength }: SvgWheelSectionProps) {
-  const [isInitialRender, setInitialRender] = useState(true);
-
-  useEffect(() => {
-    setInitialRender(false);
-  }, []);
+  const isAlreadyMounted = useIsMounted();
 
   return (
     <circle
@@ -67,7 +67,7 @@ function SvgWheelSection({ index, deg, dashLength }: SvgWheelSectionProps) {
       cx="10"
       cy="10"
       style={{
-        transform: isInitialRender
+        transform: !isAlreadyMounted
           ? `rotate(360deg)`
           : `rotate(${(deg * index).toFixed(2)}deg)`,
         strokeDasharray: `${dashLength} ${(Math.PI * 10).toFixed(2)}`,

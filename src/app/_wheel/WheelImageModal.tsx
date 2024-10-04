@@ -1,29 +1,35 @@
 import { Image as ImageIcon } from 'lucide-react';
+import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useDropzone } from 'react-dropzone';
 
 import { classNames } from '@/utils';
 import { useIsMounted } from '@/utils/useIsMounted';
 
-interface WheelImageModalProps {
-  isOpen: boolean;
-  setIsOpen: (bool: boolean) => void;
-  setImage: (newImage: string | null) => void;
-  error: Error | null;
-  setError: (err: Error) => void;
+const WHEEL_IMAGE_MODAL_ID = 'change-wheel-image-modal';
+
+export function getWheelModalEl(): HTMLDialogElement {
+  const wheelModal =
+    document.getElementById<HTMLDialogElement>(WHEEL_IMAGE_MODAL_ID);
+  if (!wheelModal) {
+    throw new Error(
+      `getWheelModalEl: element with id '${WHEEL_IMAGE_MODAL_ID}' not found`
+    );
+  }
+  return wheelModal;
 }
 
-export function WheelImageModal({
-  isOpen,
-  setIsOpen,
-  setImage,
-  error,
-  setError,
-}: WheelImageModalProps) {
+interface WheelImageModalProps {
+  setImage: (newImage: string | null) => void;
+}
+
+export function WheelImageModal({ setImage }: WheelImageModalProps) {
+  const [error, setError] = useState<Error | null>(null);
   const isMounted = useIsMounted(); // Use this to avoid SSR errors
 
   function closeModal() {
-    setIsOpen(false);
+    const wheelModal = getWheelModalEl();
+    wheelModal.close();
   }
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -33,6 +39,7 @@ export function WheelImageModal({
     onDropAccepted(files) {
       setImage(URL.createObjectURL(files?.[0]));
       closeModal();
+      setError(null);
     },
     onDropRejected(fileRejections) {
       setError(
@@ -49,12 +56,9 @@ export function WheelImageModal({
 
   return isMounted
     ? createPortal(
-        <div
-          className={classNames('modal', isOpen && 'modal-open')}
-          onClick={(e) => {
-            if (e.target !== e.currentTarget) return;
-            closeModal();
-          }}
+        <dialog
+          id={WHEEL_IMAGE_MODAL_ID}
+          className={'modal modal-bottom sm:modal-middle'}
         >
           <div className="modal-box relative flex flex-col items-center gap-2 border bg-base-100 dark:border-transparent dark:bg-neutral dark:text-neutral-content">
             <h1 className="text-lg font-bold">Change wheel image here</h1>
@@ -68,13 +72,14 @@ export function WheelImageModal({
               ✕
             </button>
 
+            {/* Drop zone */}
             <div
               {...getRootProps({
                 className: classNames(
                   'p-2 relative',
                   'rounded-xl transition absolute inset-0',
                   isDragActive &&
-                    'opacity-60 dark:bg-neutral-focus dark:opacity-40'
+                    'opacity-70 bg-base-300/70 dark:bg-base-100/50'
                 ),
               })}
             >
@@ -86,9 +91,9 @@ export function WheelImageModal({
                 <div className="flex flex-wrap justify-center gap-1 text-sm leading-6 text-neutral-content">
                   <label
                     htmlFor="file-upload"
-                    className="btn btn-neutral btn-outline btn-xs"
+                    className="btn btn-outline btn-neutral btn-xs"
                   >
-                    Upload an image
+                    Load an image
                   </label>
                   <input
                     {...getInputProps({
@@ -108,7 +113,13 @@ export function WheelImageModal({
               </div>
             </div>
           </div>
-        </div>,
+
+          <form method="dialog" className="modal-backdrop">
+            <button>
+              <span className="sr-only">close</span>
+            </button>
+          </form>
+        </dialog>,
         document.body
       )
     : null;

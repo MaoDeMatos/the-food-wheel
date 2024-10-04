@@ -1,7 +1,7 @@
 import { Pause, Play } from 'lucide-react';
 
 import { BADGES_COLORS } from '@/utils/constants';
-import { wheelMachineContext } from '@/utils/wheelMachine';
+import { useWheelMachineContext } from '@/utils/wheelMachine';
 
 export function RightMenu() {
   return (
@@ -13,9 +13,10 @@ export function RightMenu() {
 }
 
 function SpinTheWheelButton() {
-  const [wheelState, send] = wheelMachineContext.useActor();
+  const [machine, send] = useWheelMachineContext();
 
-  const isSpinnin = ['spinning', 'reset'].some(wheelState.matches);
+  const isSpinnin = machine.matches('reset') || machine.matches('spinning');
+
   const text = isSpinnin ? 'Stop the wheel' : 'Spin the wheel !';
 
   return (
@@ -23,8 +24,10 @@ function SpinTheWheelButton() {
       className="btn btn-circle btn-secondary w-full gap-2 shadow-md transition disabled:pointer-events-auto disabled:cursor-not-allowed disabled:shadow"
       type="button"
       title={text}
-      onClick={() => (isSpinnin ? send('STOP') : send('SPIN'))}
-      disabled={isSpinnin ? false : !wheelState.matches('ready')}
+      onClick={() =>
+        isSpinnin ? send({ type: 'STOP' }) : send({ type: 'SPIN' })
+      }
+      disabled={isSpinnin ? false : !machine.matches('ready')}
     >
       {isSpinnin ? <Pause /> : <Play />}
       {text}
@@ -33,7 +36,7 @@ function SpinTheWheelButton() {
 }
 
 function RightMenuCaptions() {
-  const [{ context }] = wheelMachineContext.useActor();
+  const [{ context }] = useWheelMachineContext();
   const filteredOptions = context.options.filter(Boolean);
 
   return (

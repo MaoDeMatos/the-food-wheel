@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { CustomSliderComponent } from '@/components/Sliders';
 import { INITIAL_SPEED, SLOWDOWN_TIME } from '@/utils/constants';
-import { wheelMachineContext } from '@/utils/wheelMachine';
+import { useWheelMachineContext } from '@/utils/wheelMachine';
 
 export function LeftMenu() {
   return (
@@ -18,7 +18,12 @@ export function LeftMenu() {
 const MAX_OPTIONS_NUMBER = 9;
 
 function LeftMenuConfig() {
-  const [{ context }, send] = wheelMachineContext.useActor();
+  const [
+    {
+      context: { slowdownTime, initialSpeed },
+    },
+    send,
+  ] = useWheelMachineContext();
 
   return (
     <div className="space-y-4">
@@ -26,7 +31,7 @@ function LeftMenuConfig() {
 
       <CustomSliderComponent
         label="Initial speed (turns/sec) :"
-        value={context.initialSpeed}
+        value={initialSpeed}
         isValueVisible={false}
         handleValueChanges={(newVal: number) => {
           send({
@@ -40,7 +45,7 @@ function LeftMenuConfig() {
       />
       <CustomSliderComponent
         label="Slowdown time (seconds) :"
-        value={context.slowdownTime}
+        value={slowdownTime}
         handleValueChanges={(newVal: number) => {
           send({
             type: 'UPDATE_CONTEXT',
@@ -55,17 +60,21 @@ function LeftMenuConfig() {
 }
 
 function LeftMenuOptions() {
-  const [wheelState, send] = wheelMachineContext.useActor();
-  const { options } = wheelState.context;
+  const [machine, send] = useWheelMachineContext();
 
-  const hasEmptyInput = options.some((val) => !val);
-  const disabled = ['reset', 'spinning'].some(wheelState.matches);
+  const {
+    context: { options },
+  } = machine;
+
+  const disabled = machine.matches('reset') || machine.matches('spinning');
 
   useEffect(() => {
+    const hasEmptyInput = options.some((val) => !val);
+
     if (!hasEmptyInput && options.length < MAX_OPTIONS_NUMBER) {
-      send('OPTIONS.ADD');
+      send({ type: 'OPTIONS.ADD' });
     }
-  }, [wheelState.context]);
+  }, [options]);
 
   return (
     <div className="space-y-4">
@@ -78,7 +87,7 @@ function LeftMenuOptions() {
         {options.map((opt, idx) => (
           <div
             key={idx}
-            className="input join-item input-ghost input-md relative w-full p-0 focus-within:z-10"
+            className="input input-md join-item relative w-full p-0 transition focus-within:z-10"
           >
             <span className="pointer-events-none absolute left-3 top-[52%] z-10 -translate-y-1/2 select-none">
               {idx + 1}.
@@ -86,7 +95,7 @@ function LeftMenuOptions() {
             <input
               type="text"
               placeholder="Pizza ?"
-              className="input join-item input-md w-full pl-7 pr-8"
+              className="input input-md join-item w-full pl-7 pr-8"
               value={opt}
               disabled={disabled}
               onChange={(e) =>
@@ -100,7 +109,7 @@ function LeftMenuOptions() {
             {options.length - 1 === idx ? null : (
               <button
                 type="button"
-                className="absolute right-1.5 top-[52%] z-[1] flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full p-1 ring-current transition hover:ring-2 disabled:cursor-not-allowed disabled:hover:ring-0"
+                className="absolute right-1.5 top-[52%] z-10 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full p-1 ring-current transition hover:ring-2 disabled:cursor-not-allowed disabled:hover:ring-0"
                 disabled={disabled}
                 onClick={() => {
                   send({ type: 'OPTIONS.REMOVE', id: idx });

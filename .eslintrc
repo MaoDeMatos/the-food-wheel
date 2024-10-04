@@ -1,5 +1,5 @@
 {
-  "extends": ["next/core-web-vitals", "plugin:valtio/recommended"],
+  "extends": ["next/core-web-vitals"],
   "rules": {
     "react-hooks/exhaustive-deps": "off"
   }

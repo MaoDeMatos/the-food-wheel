@@ -1,7 +1,7 @@
-import { ChangeEvent, useMemo } from 'react';
+import { ChangeEvent, useCallback, useMemo } from 'react';
 
 import { slugify } from '@/utils';
-import { wheelMachineContext } from '@/utils/wheelMachine';
+import { useWheelMachineContext } from '@/utils/wheelMachine';
 
 type CustomSliderComponentProps = {
   label: string;
@@ -28,11 +28,14 @@ export function CustomSliderComponent({
   step = 1,
   withCarets = false,
 }: CustomSliderComponentProps) {
-  const [wheelState] = wheelMachineContext.useActor();
+  const [machine] = useWheelMachineContext();
 
-  function valueChangeHandler(e: ChangeEvent<HTMLInputElement>) {
-    handleValueChanges(Number(e.target.value));
-  }
+  const valueChangeHandler = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      handleValueChanges(e.target.valueAsNumber);
+    },
+    [handleValueChanges]
+  );
 
   const carets = useMemo(() => {
     if (!withCarets) return null;
@@ -60,6 +63,8 @@ export function CustomSliderComponent({
 
   const labelId = slugify(label);
 
+  const disabled = machine.matches('reset') || machine.matches('spinning');
+
   return (
     <div>
       <div className="flex items-start justify-between pb-2">
@@ -75,10 +80,10 @@ export function CustomSliderComponent({
             min={min}
             max={max}
             value={value}
-            className="range range-primary range-xs disabled:cursor-not-allowed disabled:opacity-60"
+            className="range range-primary range-xs transition disabled:cursor-not-allowed disabled:opacity-60"
             onChange={valueChangeHandler}
             step={step}
-            disabled={['reset', 'spinning'].some(wheelState.matches)}
+            disabled={disabled}
             id={labelId}
           />
 
