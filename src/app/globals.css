@@ -31,4 +31,28 @@
   /* border: 3px solid hsl(var(--n)); */
 }
 
+/*
+ * Overrides daisyui's styles
+ * We don't need it as our :root is not scrolling
+ */
+:root:has(
+    :is(
+        .modal-open,
+        .modal:target,
+        .modal-toggle:checked + .modal,
+        .modal[open]
+      )
+  ) {
+  scrollbar-gutter: auto !important;
+}
 /* Scrollbars end */
+
+/* Remove daisyui's default styles */
+.modal::backdrop {
+  background-color: #0000;
+  animation: none;
+}
+
+.modal .modal-backdrop {
+  background-color: #0006;
+}

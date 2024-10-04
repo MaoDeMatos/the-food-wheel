@@ -1,7 +1,7 @@
 import { FileMinus, FilePlus } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
-import { WheelImageModal } from './WheelImageModal';
+import { WheelImageModal, getWheelModalEl } from './WheelImageModal';
 
 type ChangeWheelImageProps = {
   image: string | null;
@@ -9,8 +9,10 @@ type ChangeWheelImageProps = {
 };
 
 export function ChangeWheelImage({ image, setImage }: ChangeWheelImageProps) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
+  const openModal = () => {
+    const wheelModal = getWheelModalEl();
+    wheelModal.showModal();
+  };
 
   const { hasImage, Icon } = useMemo(() => {
     const hasImage = Boolean(image);
@@ -21,27 +23,19 @@ export function ChangeWheelImage({ image, setImage }: ChangeWheelImageProps) {
     };
   }, [image]);
 
-  useEffect(() => {
-    if (hasImage || !isModalOpen) setError(null);
-  }, [hasImage, isModalOpen]);
-
   return (
     <>
       <button
         type="button"
         className="btn btn-circle btn-primary absolute -top-0 right-0 z-[1] flex p-1 shadow-md"
         title={hasImage ? 'Remove image' : 'Add image'}
-        onClick={() => (hasImage ? setImage(null) : setIsModalOpen(true))}
+        onClick={() => (hasImage ? setImage(null) : openModal())}
       >
         <Icon />
         <span className="sr-only">Change wheel image</span>
       </button>
 
-      <WheelImageModal
-        isOpen={isModalOpen}
-        setIsOpen={setIsModalOpen}
-        {...{ setImage, error, setError }}
-      />
+      <WheelImageModal setImage={setImage} />
     </>
   );
 }
