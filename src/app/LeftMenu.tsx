@@ -87,7 +87,7 @@ function LeftMenuOptions() {
         {options.map((opt, idx) => (
           <div
             key={idx}
-            className="input join-item input-ghost input-md relative w-full p-0 focus-within:z-10"
+            className="input input-md join-item relative w-full p-0 transition focus-within:z-10"
           >
             <span className="pointer-events-none absolute left-3 top-[52%] z-10 -translate-y-1/2 select-none">
               {idx + 1}.
@@ -95,7 +95,7 @@ function LeftMenuOptions() {
             <input
               type="text"
               placeholder="Pizza ?"
-              className="input join-item input-md w-full pl-7 pr-8"
+              className="input input-md join-item w-full pl-7 pr-8"
               value={opt}
               disabled={disabled}
               onChange={(e) =>
@@ -109,7 +109,7 @@ function LeftMenuOptions() {
             {options.length - 1 === idx ? null : (
               <button
                 type="button"
-                className="absolute right-1.5 top-[52%] z-[1] flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full p-1 ring-current transition hover:ring-2 disabled:cursor-not-allowed disabled:hover:ring-0"
+                className="absolute right-1.5 top-[52%] z-10 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full p-1 ring-current transition hover:ring-2 disabled:cursor-not-allowed disabled:hover:ring-0"
                 disabled={disabled}
                 onClick={() => {
                   send({ type: 'OPTIONS.REMOVE', id: idx });
